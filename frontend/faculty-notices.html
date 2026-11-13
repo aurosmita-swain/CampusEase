@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Faculty Notices | CampusEase</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="faculty-dashboard">
+
+    <nav class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+        <div class="nav-links">
+
+            <a href="faculty-dashboard.html">Dashboard</a>
+            <a href="faculty-attendance.html">Attendance</a>
+            <a href="faculty-students.html">Students</a>
+            <a href="faculty-assignments.html">Assignments</a>
+            <a href="faculty-requests.html">Requests</a>
+            <a href="faculty-notices.html">Notices</a>
+            <a href="login.html">Logout</a>
+
+        </div>
+
+    </nav>
+
+
+    <section class="dashboard-hero">
+
+        <div>
+
+            <p class="small-title">
+                FACULTY SERVICES
+            </p>
+
+            <h1>
+                Notice Board 📢
+            </h1>
+
+            <p class="dashboard-subtitle">
+                Publish important announcements for students.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <main class="dashboard-container">
+
+
+        <!-- CREATE NOTICE -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        COMMUNICATION
+                    </p>
+
+                    <h2>
+                        Create Notice
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <form id="facultyNoticeForm">
+
+                <div class="notice-form-grid">
+
+                    <div>
+
+                        <label for="noticeTitle">
+                            Notice Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="noticeTitle"
+                            placeholder="Example: Internal Examination Schedule"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="noticeCategory">
+                            Category
+                        </label>
+
+                        <select
+                            id="noticeCategory"
+                            required
+                        >
+
+                            <option value="">
+                                Select Category
+                            </option>
+
+                            <option value="Academic">
+                                Academic
+                            </option>
+
+                            <option value="Examination">
+                                Examination
+                            </option>
+
+                            <option value="Assignment">
+                                Assignment
+                            </option>
+
+                            <option value="Event">
+                                Event
+                            </option>
+
+                            <option value="Important">
+                                Important
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="noticeAudience">
+                            Audience
+                        </label>
+
+                        <select
+                            id="noticeAudience"
+                            required
+                        >
+
+                            <option value="">
+                                Select Audience
+                            </option>
+
+                            <option value="All Students">
+                                All Students
+                            </option>
+
+                            <option value="Section A">
+                                Section A
+                            </option>
+
+                            <option value="Section B">
+                                Section B
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="noticeDate">
+                            Notice Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="noticeDate"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <label for="noticeMessage">
+                    Notice Message
+                </label>
+
+                <textarea
+                    id="noticeMessage"
+                    rows="5"
+                    placeholder="Write the notice for students..."
+                    required
+                ></textarea>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+                    Publish Notice
+                </button>
+
+            </form>
+
+
+            <div
+                id="noticeMessageStatus"
+                class="notice-message-status"
+            ></div>
+
+        </section>
+
+
+        <!-- NOTICE SUMMARY -->
+
+        <section class="dashboard-section">
+
+            <div class="attendance-summary">
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Total Notices
+                    </span>
+
+                    <strong id="noticeTotal">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Academic
+                    </span>
+
+                    <strong id="noticeAcademic">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Examination
+                    </span>
+
+                    <strong id="noticeExam">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Important
+                    </span>
+
+                    <strong id="noticeImportant">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PUBLISHED NOTICES -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        PUBLISHED
+                    </p>
+
+                    <h2>
+                        Recent Notices
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="faculty-notice-list"
+                id="facultyNoticeList"
+            ></div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="footer">
+
+        <p>
+            © 2026 CampusEase.
+            One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

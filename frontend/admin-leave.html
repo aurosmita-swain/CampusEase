@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Leave Requests | CampusEase</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+        <nav>
+
+            <a href="admin-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="admin-documents.html">
+                Requests
+            </a>
+
+            <a href="admin-problems.html">
+                Complaints
+            </a>
+
+            <a
+                href="#"
+                id="adminLogoutBtn"
+            >
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="admin-dashboard">
+
+        <!-- HEADER -->
+
+        <section class="welcome-section">
+
+            <div>
+
+                <p class="small-title">
+                    ADMIN PANEL
+                </p>
+
+                <h1>
+                    Leave Requests 📝
+                </h1>
+
+                <p class="student-details">
+                    Review and manage student leave applications.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- SUMMARY -->
+
+        <section class="overview-grid">
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    📋
+                </div>
+
+                <div>
+
+                    <p>
+                        Total Requests
+                    </p>
+
+                    <h2 id="totalLeaveRequests">
+                        -
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    ⏳
+                </div>
+
+                <div>
+
+                    <p>
+                        Pending
+                    </p>
+
+                    <h2 id="pendingLeaveRequests">
+                        -
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    ✅
+                </div>
+
+                <div>
+
+                    <p>
+                        Approved
+                    </p>
+
+                    <h2 id="approvedLeaveRequests">
+                        -
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    ❌
+                </div>
+
+                <div>
+
+                    <p>
+                        Rejected
+                    </p>
+
+                    <h2 id="rejectedLeaveRequests">
+                        -
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LEAVE REQUESTS -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        STUDENT LEAVE
+                    </p>
+
+                    <h2>
+                        Applications
+                    </h2>
+
+                </div>
+
+                <a
+                    href="admin-dashboard.html"
+                    class="view-link"
+                >
+                    ← Dashboard
+                </a>
+
+            </div>
+
+
+            <div
+                class="request-grid"
+                id="leaveRequestList"
+            >
+
+                <div class="request-card">
+
+                    <div>
+
+                        <h3>
+                            Loading leave requests...
+                        </h3>
+
+                        <p>
+                            Please wait.
+                        </p>
+
+                    </div>
+
+                    <span class="status pending">
+                        Loading
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 CampusEase. One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+    <script src="admin-leave.js"></script>
+
+</body>
+
+</html>

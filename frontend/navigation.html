@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Campus Navigation | CampusEase</title>
+
+    <!-- CampusEase CSS -->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <!-- Leaflet Map CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+</head>
+
+
+<body class="queue-page">
+
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+        <div class="nav-links">
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="#">
+                Services
+            </a>
+
+            <a href="#">
+                Notices
+            </a>
+
+            <a href="login.html">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- Header -->
+    <section class="queue-header">
+
+        <div>
+
+            <h1>
+                Campus Navigation 🗺️
+            </h1>
+
+            <p>
+                Find classrooms, labs, offices and important campus locations.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Navigation Content -->
+    <main class="queue-card">
+
+
+        <h2>
+            Campus Locations
+        </h2>
+
+
+        <!-- Destination Search -->
+        <div class="navigation-search">
+
+            <label for="destination">
+                Where do you want to go?
+            </label>
+
+
+            <input
+                type="text"
+                id="destination"
+                placeholder="Example: Room 204"
+            >
+
+
+            <button
+                type="button"
+                class="primary-btn"
+                id="findRouteBtn"
+            >
+                🧭 Find Route
+            </button>
+
+        </div>
+
+
+        <p class="queue-description">
+            Search for a campus location and view it on the map.
+        </p>
+
+
+
+        <!-- Map Area -->
+        <div class="campus-map">
+
+            <div id="campusMap"></div>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <p>
+            © 2026 CampusEase. One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+
+    <!-- IMPORTANT:
+         Leaflet must load BEFORE script.js
+    -->
+
+    <!-- Leaflet Map JavaScript -->
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+
+    <!-- CampusEase JavaScript -->
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>

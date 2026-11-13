@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Requests | Faculty | CampusEase</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="faculty-dashboard">
+
+    <nav class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+        <div class="nav-links">
+
+            <a href="faculty-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="faculty-attendance.html">
+                Attendance
+            </a>
+
+            <a href="faculty-students.html">
+                Students
+            </a>
+
+            <a href="faculty-assignments.html">
+                Assignments
+            </a>
+
+            <a href="faculty-requests.html">
+                Requests
+            </a>
+
+            <a href="login.html">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <section class="dashboard-hero">
+
+        <div>
+
+            <p class="small-title">
+                FACULTY SERVICES
+            </p>
+
+            <h1>
+                Student Requests 📩
+            </h1>
+
+            <p class="dashboard-subtitle">
+                Review and manage student academic requests.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <main class="dashboard-container">
+
+        <!-- SUMMARY -->
+
+        <section class="dashboard-section">
+
+            <div class="attendance-summary">
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Total Requests
+                    </span>
+
+                    <strong id="requestTotal">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Pending
+                    </span>
+
+                    <strong id="requestPending">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Approved
+                    </span>
+
+                    <strong id="requestApproved">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Rejected
+                    </span>
+
+                    <strong id="requestRejected">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- REQUEST LIST -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        STUDENT SERVICES
+                    </p>
+
+                    <h2>
+                        Requests
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="faculty-request-list"
+                id="facultyRequestList"
+            ></div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="footer">
+
+        <p>
+            © 2026 CampusEase.
+            One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

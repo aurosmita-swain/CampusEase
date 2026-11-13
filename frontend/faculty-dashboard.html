@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Faculty Dashboard | CampusEase</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body class="faculty-dashboard">
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="faculty-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="#">
+                Classes
+            </a>
+
+            <a href="#">
+                Students
+            </a>
+
+            <a href="#">
+                Notices
+            </a>
+
+            <a
+                href="login.html"
+                id="facultyLogoutBtn"
+            >
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         FACULTY WELCOME SECTION
+    ====================================================== -->
+
+    <section class="dashboard-hero">
+
+        <div>
+
+            <p class="small-title">
+                FACULTY PORTAL
+            </p>
+
+
+            <h1>
+                Welcome,
+                <span id="facultyName">
+                    Faculty
+                </span>
+                👋
+            </h1>
+
+
+            <p class="dashboard-subtitle">
+
+                Manage your classes, students,
+                attendance and academic activities
+                from one place.
+
+            </p>
+
+        </div>
+
+
+        <div class="student-profile-card">
+
+            <div class="profile-avatar">
+                👨‍🏫
+            </div>
+
+
+            <div>
+
+                <strong id="facultyProfileName">
+                    Faculty
+                </strong>
+
+
+                <span id="facultyDepartment">
+                    Department
+                </span>
+
+
+                <span>
+                    Faculty Member
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         OVERVIEW
+    ====================================================== -->
+
+    <main class="dashboard-container">
+
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        FACULTY OVERVIEW
+                    </p>
+
+                    <h2>
+                        Today's Overview
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-grid">
+
+
+                <!-- Today's Classes -->
+
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+                        📚
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Today's Classes
+                        </span>
+
+                        <h2 id="facultyClassesCount">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Total Students -->
+
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+                        👨‍🎓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Students
+                        </span>
+
+                        <h2 id="facultyStudentCount">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Pending Attendance -->
+
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+                        📝
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Attendance Pending
+                        </span>
+
+                        <h2 id="facultyAttendancePending">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Pending Requests -->
+
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+                        📩
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Student Requests
+                        </span>
+
+                        <h2 id="facultyRequestsCount">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             TODAY'S CLASSES
+        ================================================== -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        TEACHING
+                    </p>
+
+                    <h2>
+                        Today's Classes
+                    </h2>
+
+                </div>
+
+
+                <a
+                    href="#"
+                    class="view-link"
+                >
+                    View Timetable →
+                </a>
+
+            </div>
+
+
+            <div
+                class="class-list"
+                id="facultyClassList"
+            >
+
+
+                <!-- Class 1 -->
+
+                <div class="class-card">
+
+                    <div class="class-time">
+
+                        <strong>
+                            09:15
+                        </strong>
+
+                        <span>
+                            AM
+                        </span>
+
+                    </div>
+
+
+                    <div class="class-info">
+
+                        <h3>
+                            Data Structures
+                        </h3>
+
+                        <p>
+                            CSE • Section A
+                        </p>
+
+                    </div>
+
+
+                    <div class="class-room">
+
+                        <span>
+                            📍 Room 204
+                        </span>
+
+                        <span class="status processing">
+                            Upcoming
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Class 2 -->
+
+                <div class="class-card">
+
+                    <div class="class-time">
+
+                        <strong>
+                            11:00
+                        </strong>
+
+                        <span>
+                            AM
+                        </span>
+
+                    </div>
+
+
+                    <div class="class-info">
+
+                        <h3>
+                            Object Oriented Programming
+                        </h3>
+
+                        <p>
+                            CSE • Section A
+                        </p>
+
+                    </div>
+
+
+                    <div class="class-room">
+
+                        <span>
+                            📍 Lab 2
+                        </span>
+
+                        <span class="status processing">
+                            Upcoming
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Class 3 -->
+
+                <div class="class-card">
+
+                    <div class="class-time">
+
+                        <strong>
+                            01:30
+                        </strong>
+
+                        <span>
+                            PM
+                        </span>
+
+                    </div>
+
+
+                    <div class="class-info">
+
+                        <h3>
+                            Web Application Development
+                        </h3>
+
+                        <p>
+                            CSE • Section A
+                        </p>
+
+                    </div>
+
+
+                    <div class="class-room">
+
+                        <span>
+                            📍 Room 305
+                        </span>
+
+                        <span class="status processing">
+                            Upcoming
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             QUICK ACTIONS
+        ================================================== -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        FACULTY SERVICES
+                    </p>
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-actions-grid">
+
+
+                <a
+                    href="faculty-attendance.html"
+                    class="quick-action"
+                >
+
+                    <span>
+                        📝
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Mark Attendance
+                        </strong>
+
+                        <small>
+                            Record student attendance
+                        </small>
+
+                    </div>
+
+                </a>
+
+
+
+                <a
+                    href="faculty-students.html"
+                    class="quick-action"
+                >
+
+                    <span>
+                        👨‍🎓
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            My Students
+                        </strong>
+
+                        <small>
+                            View students and sections
+                        </small>
+
+                    </div>
+
+                </a>
+
+
+
+                <a
+                    href="faculty-assignments.html"
+                    class="quick-action"
+                >
+
+                    <span>
+                        📚
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Assignments
+                        </strong>
+
+                        <small>
+                            Create and manage assignments
+                        </small>
+
+                    </div>
+
+                </a>
+
+
+
+                <a
+                    href="faculty-notices.html"
+                    class="quick-action"
+                >
+
+                    <span>
+                        📢
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Post Notice
+                        </strong>
+
+                        <small>
+                            Send notices to students
+                        </small>
+
+                    </div>
+
+                </a>
+
+
+
+                <a
+                    href="faculty-requests.html"
+                    class="quick-action"
+                >
+
+                    <span>
+                        📩
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Student Requests
+                        </strong>
+
+                        <small>
+                            Review student requests
+                        </small>
+
+                    </div>
+
+                </a>
+
+
+
+                <a
+                    href="#"
+                    class="quick-action"
+                >
+
+                    <span>
+                        📊
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Academic Reports
+                        </strong>
+
+                        <small>
+                            View attendance and performance
+                        </small>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RECENT STUDENT REQUESTS
+        ================================================== -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        STUDENT ACTIVITY
+                    </p>
+
+                    <h2>
+                        Recent Student Requests
+                    </h2>
+
+                </div>
+
+
+                <a
+                    href="#"
+                    class="view-link"
+                >
+                    View All →
+                </a>
+
+            </div>
+
+
+            <div
+                class="request-list"
+                id="facultyRequests"
+            >
+
+                <div class="request-card">
+
+                    <div>
+
+                        <h3>
+                            No requests loaded
+                        </h3>
+
+                        <p>
+                            Student requests will appear here.
+                        </p>
+
+                    </div>
+
+                    <span class="status pending">
+                        Waiting
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FACULTY NOTICES
+        ================================================== -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        CAMPUS UPDATES
+                    </p>
+
+                    <h2>
+                        Faculty Notices
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="notice-list"
+                id="facultyNoticeList"
+            >
+
+                <div class="notice-card">
+
+                    <span class="notice-date">
+                        OCT 07
+                    </span>
+
+
+                    <div>
+
+                        <h3>
+                            Mid-Semester Examination Schedule
+                        </h3>
+
+                        <p>
+                            Examination schedule has been published.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="notice-card">
+
+                    <span class="notice-date">
+                        OCT 06
+                    </span>
+
+
+                    <div>
+
+                        <h3>
+                            Faculty Meeting
+                        </h3>
+
+                        <p>
+                            Department faculty meeting is scheduled.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 CampusEase.
+            One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard | CampusEase</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ===============================
+         NAVBAR
+    ================================ -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+        <nav>
+
+            <a href="dashboard.html" class="active">
+                Dashboard
+            </a>
+
+            <a href="#">
+                Services
+            </a>
+
+            <a href="#">
+                Notices
+            </a>
+
+            <a href="#" id="logoutBtn">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ===============================
+         MAIN DASHBOARD
+    ================================ -->
+
+    <main class="student-dashboard">
+
+
+        <!-- ===============================
+             WELCOME SECTION
+        ================================ -->
+
+        <section class="welcome-section">
+
+            <div>
+
+                <p class="small-title">
+                    STUDENT DASHBOARD
+                </p>
+
+                <h1>
+                    Welcome,
+                    <span id="studentName">Student</span> 👋
+                </h1>
+
+                <p class="student-details">
+
+                    <span id="studentDepartment">
+                        Department
+                    </span>
+
+                    <span class="separator">
+                        •
+                    </span>
+
+                    Section
+
+                    <span id="studentSection">
+                        -
+                    </span>
+
+                    <span class="separator">
+                        •
+                    </span>
+
+                    <span id="studentType">
+                        Student
+                    </span>
+
+                    <span
+                        class="separator"
+                        id="hostelSeparator"
+                        style="display:none;"
+                    >
+                        •
+                    </span>
+
+                    <span
+                        id="studentHostel"
+                        style="display:none;"
+                    >
+                        -
+                    </span>
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             STUDENT TYPE SECTION
+        ================================================== -->
+
+        <section
+            class="dashboard-section"
+            id="studentTypeSection"
+        >
+
+
+            <!-- ============================================
+                 HOSTELLER SECTION
+            ============================================= -->
+
+            <div
+                id="hostellerInfo"
+                style="display:none;"
+            >
+
+                <div class="section-title-row">
+
+                    <div>
+
+                        <p class="small-title">
+                            HOSTEL SERVICES
+                        </p>
+
+                        <h2>
+                            Your Hostel
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="overview-grid">
+
+
+                    <!-- HOSTEL BLOCK -->
+
+                    <div class="overview-card">
+
+                        <div class="overview-icon">
+                            🏠
+                        </div>
+
+                        <div>
+
+                            <p>
+                                Hostel Block
+                            </p>
+
+                            <h2 id="hostelBlockDisplay">
+                                -
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- HOSTEL LEAVE -->
+
+                    <div class="overview-card">
+
+                        <div class="overview-icon">
+                            📄
+                        </div>
+
+                        <div>
+
+                            <p>
+                                Hostel Leave
+                            </p>
+
+                            <h2>
+                                Available
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- HOSTEL MAINTENANCE -->
+
+                    <div class="overview-card">
+
+                        <div class="overview-icon">
+                            🛠️
+                        </div>
+
+                        <div>
+
+                            <p>
+                                Hostel Maintenance
+                            </p>
+
+                            <h2>
+                                Report Issue
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ============================================
+                 DAY SCHOLAR SECTION
+            ============================================= -->
+
+            <div
+                id="dayScholarInfo"
+                style="display:none;"
+            >
+
+                <div class="section-title-row">
+
+                    <div>
+
+                        <p class="small-title">
+                            DAY SCHOLAR SERVICES
+                        </p>
+
+                        <h2>
+                            Your Campus Day
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="overview-grid">
+
+
+                    <!-- TRANSPORT -->
+
+                    <div class="overview-card">
+
+                        <div class="overview-icon">
+                            🚌
+                        </div>
+
+                        <div>
+
+                            <p>
+                                Daily Commute
+                            </p>
+
+                            <h2>
+                                Transport
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- NAVIGATION -->
+
+                    <div class="overview-card">
+
+                        <div class="overview-icon">
+                            🗺️
+                        </div>
+
+                        <div>
+
+                            <p>
+                                Campus Navigation
+                            </p>
+
+                            <h2>
+                                Available
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CAMPUS SUPPORT -->
+
+                    <div class="overview-card">
+
+                        <div class="overview-icon">
+                            🚨
+                        </div>
+
+                        <div>
+
+                            <p>
+                                Campus Support
+                            </p>
+
+                            <h2>
+                                Available
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ===============================
+             OVERVIEW
+        ================================ -->
+
+        <section class="overview-grid">
+
+
+            <!-- ATTENDANCE -->
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    📊
+                </div>
+
+                <div>
+
+                    <p>
+                        Attendance
+                    </p>
+
+                    <h2>
+                        87%
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- ASSIGNMENTS -->
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    📝
+                </div>
+
+                <div>
+
+                    <p>
+                        Assignments
+                    </p>
+
+                    <h2>
+                        3
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- PENDING REQUESTS -->
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    📋
+                </div>
+
+                <div>
+
+                    <p>
+                        Pending Requests
+                    </p>
+
+                    <h2 id="pendingRequestsCount">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIVE COMPLAINTS -->
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    🛠️
+                </div>
+
+                <div>
+
+                    <p>
+                        Active Complaints
+                    </p>
+
+                    <h2>
+                        1
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ===============================
+             TODAY'S CLASSES
+        ================================ -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        TODAY
+                    </p>
+
+                    <h2>
+                        Today's Classes
+                    </h2>
+
+                </div>
+
+                <a
+                    href="#"
+                    class="view-link"
+                >
+                    View Timetable →
+                </a>
+
+            </div>
+
+
+            <div class="classes-list">
+
+
+                <!-- CLASS 1 -->
+
+                <div class="class-item">
+
+                    <div class="class-time">
+                        <strong>9:15 AM</strong>
+                    </div>
+
+                    <div class="class-info">
+
+                        <h3>
+                            Data Structures
+                        </h3>
+
+                        <p>
+                            Room 204
+                        </p>
+
+                    </div>
+
+                    <span
+                        class="class-status"
+                        id="classStatus1"
+                    >
+                        Upcoming
+                    </span>
+
+                </div>
+
+
+                <!-- CLASS 2 -->
+
+                <div class="class-item">
+
+                    <div class="class-time">
+                        <strong>11:00 AM</strong>
+                    </div>
+
+                    <div class="class-info">
+
+                        <h3>
+                            Object Oriented Programming
+                        </h3>
+
+                        <p>
+                            Lab 2
+                        </p>
+
+                    </div>
+
+                    <span
+                        class="class-status"
+                        id="classStatus2"
+                    >
+                        Upcoming
+                    </span>
+
+                </div>
+
+
+                <!-- CLASS 3 -->
+
+                <div class="class-item">
+
+                    <div class="class-time">
+                        <strong>1:30 PM</strong>
+                    </div>
+
+                    <div class="class-info">
+
+                        <h3>
+                            Web Application Development
+                        </h3>
+
+                        <p>
+                            Room 305
+                        </p>
+
+                    </div>
+
+                    <span
+                        class="class-status"
+                        id="classStatus3"
+                    >
+                        Upcoming
+                    </span>
+
+                </div>
+
+
+                <!-- CLASS 4 -->
+
+                <div class="class-item">
+
+                    <div class="class-time">
+                        <strong>3:00 PM</strong>
+                    </div>
+
+                    <div class="class-info">
+
+                        <h3>
+                            Economics
+                        </h3>
+
+                        <p>
+                            Room 201
+                        </p>
+
+                    </div>
+
+                    <span
+                        class="class-status"
+                        id="classStatus4"
+                    >
+                        Upcoming
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             DAY SCHOLAR COMMUTE SECTION
+        ================================================== -->
+
+        <section
+            class="dashboard-section"
+            id="dayScholarCommute"
+            style="display:none;"
+        >
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        DAILY COMMUTE
+                    </p>
+
+                    <h2>
+                        Day Scholar Support
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="request-grid">
+
+
+                <!-- TRANSPORT -->
+
+                <div class="request-card">
+
+                    <div>
+
+                        <h3>
+                            🚌 Campus Transport
+                        </h3>
+
+                        <p>
+                            Check your daily transport and bus information.
+                        </p>
+
+                    </div>
+
+                    <span class="status pending">
+                        Available
+                    </span>
+
+                </div>
+
+
+                <!-- NAVIGATION -->
+
+                <div class="request-card">
+
+                    <div>
+
+                        <h3>
+                            🗺️ Campus Navigation
+                        </h3>
+
+                        <p>
+                            Find classrooms, labs, offices and other campus locations.
+                        </p>
+
+                    </div>
+
+                    <span class="status pending">
+                        Available
+                    </span>
+
+                </div>
+
+
+                <!-- EMERGENCY -->
+
+                <div class="request-card">
+
+                    <div>
+
+                        <h3>
+                            🚨 Emergency Support
+                        </h3>
+
+                        <p>
+                            Quickly access important campus support services.
+                        </p>
+
+                    </div>
+
+                    <span class="status pending">
+                        Available
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ===============================
+             ASSIGNMENTS + NOTICES
+        ================================ -->
+
+        <div class="dashboard-two-column">
+
+
+            <!-- ASSIGNMENTS -->
+
+            <section class="dashboard-section">
+
+                <div class="section-title-row">
+
+                    <div>
+
+                        <p class="small-title">
+                            DEADLINES
+                        </p>
+
+                        <h2>
+                            Upcoming Assignments
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="assignment-list">
+
+
+                    <div class="assignment-card">
+
+                        <div class="assignment-icon">
+                            💻
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Java OOP Assignment
+                            </h3>
+
+                            <p>
+                                Due October 10
+                            </p>
+
+                        </div>
+
+                        <span
+                            class="due-soon"
+                            id="assignmentDays1"
+                        >
+                            Soon
+                        </span>
+
+                    </div>
+
+
+                    <div class="assignment-card">
+
+                        <div class="assignment-icon">
+                            🌐
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Web Development Project
+                            </h3>
+
+                            <p>
+                                Due October 14
+                            </p>
+
+                        </div>
+
+                        <span id="assignmentDays2">
+                            7 days
+                        </span>
+
+                    </div>
+
+
+                    <div class="assignment-card">
+
+                        <div class="assignment-icon">
+                            📐
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Mathematics Assignment
+                            </h3>
+
+                            <p>
+                                Due October 17
+                            </p>
+
+                        </div>
+
+                        <span id="assignmentDays3">
+                            10 days
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- NOTICES -->
+
+            <section class="dashboard-section">
+
+                <div class="section-title-row">
+
+                    <div>
+
+                        <p class="small-title">
+                            CAMPUS UPDATES
+                        </p>
+
+                        <h2>
+                            Notices
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="notice-list"
+                    id="noticeList"
+                >
+                    <!-- Loaded by script.js -->
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- ===============================
+             PENDING REQUESTS
+        ================================ -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        SERVICE REQUESTS
+                    </p>
+
+                    <h2>
+                        Pending Requests
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="request-grid">
+
+
+                <!-- DOCUMENT REQUEST -->
+
+                <div class="request-card">
+
+                    <div>
+
+                        <h3>
+                            Document Request
+                        </h3>
+
+                        <p id="documentRequestInfo">
+                            No document request submitted.
+                        </p>
+
+                    </div>
+
+                    <span
+                        class="status pending"
+                        id="documentRequestStatus"
+                    >
+                        None
+                    </span>
+
+                </div>
+
+
+                <!-- LEAVE REQUEST -->
+
+                <div class="request-card">
+
+                    <div>
+
+                        <h3>
+                            Leave Request
+                        </h3>
+
+                        <p id="leaveRequestInfo">
+                            No leave request submitted.
+                        </p>
+
+                    </div>
+
+                    <span
+                        class="status pending"
+                        id="leaveRequestStatus"
+                    >
+                        None
+                    </span>
+
+                </div>
+
+
+                <!-- DIGITAL QUEUE -->
+
+                <div class="request-card">
+
+                    <div>
+
+                        <h3>
+                            Digital Queue
+                        </h3>
+
+                        <p id="queueStatus">
+                            No active queue token.
+                        </p>
+
+                    </div>
+
+                    <span
+                        class="status pending"
+                        id="queueTokenStatus"
+                    >
+                        None
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ===============================
+             MAINTENANCE REQUESTS
+        ================================ -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        CAMPUS PROBLEMS
+                    </p>
+
+                    <h2>
+                        My Maintenance Requests
+                    </h2>
+
+                </div>
+
+                <a
+                    href="report-problem.html"
+                    class="view-link"
+                >
+                    Report Problem →
+                </a>
+
+            </div>
+
+
+            <div
+                class="complaint-list"
+                id="myReports"
+            >
+
+                <div class="complaint-card">
+
+                    <div class="complaint-info">
+
+                        <div class="complaint-icon">
+                            🔧
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Loading reports...
+                            </h3>
+
+                            <p>
+                                Please wait.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ===============================
+             UPCOMING EVENTS
+        ================================ -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        CAMPUS LIFE
+                    </p>
+
+                    <h2>
+                        Upcoming Events
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="event-grid">
+
+
+                <!-- EVENT 1 -->
+
+                <div class="event-card">
+
+                    <div class="event-date">
+
+                        <strong>
+                            12
+                        </strong>
+
+                        <span>
+                            OCT
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Campus Hackathon
+                        </h3>
+
+                        <p>
+                            Innovation Lab • 10:00 AM
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EVENT 2 -->
+
+                <div class="event-card">
+
+                    <div class="event-date">
+
+                        <strong>
+                            18
+                        </strong>
+
+                        <span>
+                            OCT
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Annual Cultural Fest
+                        </h3>
+
+                        <p>
+                            Main Auditorium • 5:00 PM
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EVENT 3 -->
+
+                <div class="event-card">
+
+                    <div class="event-date">
+
+                        <strong>
+                            22
+                        </strong>
+
+                        <span>
+                            OCT
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Tech Club Workshop
+                        </h3>
+
+                        <p>
+                            Seminar Hall • 2:00 PM
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             QUICK ACTIONS
+        ================================================== -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        QUICK ACCESS
+                    </p>
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-actions">
+
+
+                <!-- DIGITAL QUEUE -->
+
+                <a
+                    href="queue.html"
+                    class="quick-action"
+                >
+
+                    <span>
+                        🎫
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Digital Queue
+                        </strong>
+
+                        <small>
+                            Get a service token
+                        </small>
+
+                    </div>
+
+                </a>
+
+
+                <!-- MAINTENANCE -->
+
+                <a
+                    href="report-problem.html"
+                    class="quick-action"
+                >
+
+                    <span>
+                        🛠️
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Maintenance
+                        </strong>
+
+                        <small>
+                            Report a campus issue
+                        </small>
+
+                    </div>
+
+                </a>
+
+
+                <!-- NAVIGATION -->
+
+                <a
+                    href="navigation.html"
+                    class="quick-action"
+                >
+
+                    <span>
+                        🗺️
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Campus Navigation
+                        </strong>
+
+                        <small>
+                            Find your destination
+                        </small>
+
+                    </div>
+
+                </a>
+
+
+                <!-- DAY SCHOLAR TRANSPORT -->
+
+                <div
+                    class="quick-action"
+                    id="transportAction"
+                    style="display:none;"
+                >
+
+                    <span>
+                        🚌
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Transport
+                        </strong>
+
+                        <small>
+                            Check daily commute
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AI ASSISTANT -->
+
+                <a
+                    href="ai-assistant.html"
+                    class="quick-action"
+                    id="aiAssistantAction"
+                >
+
+                    <span>
+                        🤖
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            AI Assistant
+                        </strong>
+
+                        <small>
+                            Ask CampusEase
+                        </small>
+
+                    </div>
+
+                </a>
+
+
+                <!-- LEAVE -->
+
+                <a
+                    href="leave.html"
+                    class="quick-action"
+                    id="leaveAction"
+                >
+
+                    <span>
+                        📄
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Leave Request
+                        </strong>
+
+                        <small>
+                            Submit a request
+                        </small>
+
+                    </div>
+
+                </a>
+
+
+                <!-- DOCUMENTS -->
+
+                <a
+                    href="documents.html"
+                    class="quick-action"
+                    id="documentsAction"
+                >
+
+                    <span>
+                        📁
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Documents
+                        </strong>
+
+                        <small>
+                            Request documents
+                        </small>
+
+                    </div>
+
+                </a>
+
+
+                <!-- FEES -->
+
+                <a
+                    href="fees.html"
+                    class="quick-action"
+                >
+
+                    <span>
+                        💳
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Fees & Payments
+                        </strong>
+
+                        <small>
+                            View and pay your campus fees
+                        </small>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ===============================
+         FOOTER
+    ================================ -->
+
+    <footer>
+
+        <p>
+            © 2026 CampusEase. One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+    <!-- =================================================
+         STUDENT TYPE LOGIC
+    ================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                /* =========================================
+                   GET USER DATA
+                ========================================= */
+
+                const userData =
+                    localStorage.getItem(
+                        "campusEaseUser"
+                    );
+
+
+                if (!userData) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+                }
+
+
+                let user;
+
+
+                try {
+
+                    user =
+                        JSON.parse(userData);
+
+                } catch (error) {
+
+                    console.error(
+                        "Invalid user data:",
+                        error
+                    );
+
+                    localStorage.removeItem(
+                        "campusEaseUser"
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+                }
+
+
+                console.log(
+                    "CampusEase User:",
+                    user
+                );
+
+
+                /* =========================================
+                   BASIC INFORMATION
+                ========================================= */
+
+                const studentName =
+                    document.getElementById(
+                        "studentName"
+                    );
+
+                const studentDepartment =
+                    document.getElementById(
+                        "studentDepartment"
+                    );
+
+                const studentSection =
+                    document.getElementById(
+                        "studentSection"
+                    );
+
+                const studentType =
+                    document.getElementById(
+                        "studentType"
+                    );
+
+                const studentHostel =
+                    document.getElementById(
+                        "studentHostel"
+                    );
+
+                const hostelSeparator =
+                    document.getElementById(
+                        "hostelSeparator"
+                    );
+
+
+                /* =========================================
+                   DISPLAY BASIC INFORMATION
+                ========================================= */
+
+                if (studentName) {
+
+                    studentName.textContent =
+                        user.name ||
+                        "Student";
+                }
+
+
+                if (studentDepartment) {
+
+                    studentDepartment.textContent =
+                        user.department ||
+                        "CSE";
+                }
+
+
+                if (studentSection) {
+
+                    studentSection.textContent =
+                        user.section ||
+                        "-";
+                }
+
+
+                /* =========================================
+                   GET TYPE FROM USER OBJECT
+
+                   Supports:
+                   user.student_type
+                   user.studentType
+                   user.type
+                ========================================= */
+
+                const rawStudentType =
+                    user.student_type ||
+                    user.studentType ||
+                    user.type ||
+                    "";
+
+
+                /*
+                    Remove spaces, underscores,
+                    hyphens and other symbols.
+
+                    Examples:
+
+                    "Day Scholar"
+                    → "dayscholar"
+
+                    "day_scholar"
+                    → "dayscholar"
+
+                    "DAY SCHOLAR"
+                    → "dayscholar"
+
+                    "Hosteller"
+                    → "hosteller"
+                */
+
+                const normalizedType =
+                    String(rawStudentType)
+                        .toLowerCase()
+                        .replace(
+                            /[^a-z]/g,
+                            ""
+                        );
+
+
+                console.log(
+                    "Student Type:",
+                    rawStudentType
+                );
+
+                console.log(
+                    "Normalized Type:",
+                    normalizedType
+                );
+
+
+                /* =========================================
+                   DETECT TYPE
+                ========================================= */
+
+                const isHosteller =
+                    normalizedType.includes(
+                        "hosteller"
+                    ) ||
+                    normalizedType.includes(
+                        "hostelstudent"
+                    );
+
+
+                const isDayScholar =
+                    normalizedType.includes(
+                        "dayscholar"
+                    );
+
+
+                /* =========================================
+                   GET TYPE SECTIONS
+                ========================================= */
+
+                const hostellerInfo =
+                    document.getElementById(
+                        "hostellerInfo"
+                    );
+
+                const dayScholarInfo =
+                    document.getElementById(
+                        "dayScholarInfo"
+                    );
+
+                const dayScholarCommute =
+                    document.getElementById(
+                        "dayScholarCommute"
+                    );
+
+                const transportAction =
+                    document.getElementById(
+                        "transportAction"
+                    );
+
+                const hostelBlockDisplay =
+                    document.getElementById(
+                        "hostelBlockDisplay"
+                    );
+
+
+                /* =========================================
+                   RESET BOTH SECTIONS FIRST
+                ========================================= */
+
+                if (hostellerInfo) {
+
+                    hostellerInfo.style.display =
+                        "none";
+                }
+
+                if (dayScholarInfo) {
+
+                    dayScholarInfo.style.display =
+                        "none";
+                }
+
+                if (dayScholarCommute) {
+
+                    dayScholarCommute.style.display =
+                        "none";
+                }
+
+                if (transportAction) {
+
+                    transportAction.style.display =
+                        "none";
+                }
+
+                if (studentHostel) {
+
+                    studentHostel.style.display =
+                        "none";
+                }
+
+                if (hostelSeparator) {
+
+                    hostelSeparator.style.display =
+                        "none";
+                }
+
+
+                /* =========================================
+                   HOSTELLER
+                ========================================= */
+
+                if (isHosteller) {
+
+                    console.log(
+                        "HOSTELLER DASHBOARD ACTIVE"
+                    );
+
+
+                    if (studentType) {
+
+                        studentType.textContent =
+                            "Hosteller";
+                    }
+
+
+                    if (studentHostel) {
+
+                        studentHostel.textContent =
+                            user.hostel_block ||
+                            "Hostel";
+
+                        studentHostel.style.display =
+                            "inline";
+                    }
+
+
+                    if (hostelSeparator) {
+
+                        hostelSeparator.style.display =
+                            "inline";
+                    }
+
+
+                    if (hostellerInfo) {
+
+                        hostellerInfo.style.display =
+                            "block";
+                    }
+
+
+                    if (hostelBlockDisplay) {
+
+                        hostelBlockDisplay.textContent =
+                            user.hostel_block ||
+                            "Not Assigned";
+                    }
+
+
+                    if (dayScholarInfo) {
+
+                        dayScholarInfo.style.display =
+                            "none";
+                    }
+
+
+                    if (dayScholarCommute) {
+
+                        dayScholarCommute.style.display =
+                            "none";
+                    }
+
+
+                    if (transportAction) {
+
+                        transportAction.style.display =
+                            "none";
+                    }
+
+                }
+
+
+                /* =========================================
+                   DAY SCHOLAR
+                ========================================= */
+
+                else if (isDayScholar) {
+
+                    console.log(
+                        "DAY SCHOLAR DASHBOARD ACTIVE"
+                    );
+
+
+                    if (studentType) {
+
+                        studentType.textContent =
+                            "Day Scholar";
+                    }
+
+
+                    /* Hide hostel information */
+
+                    if (studentHostel) {
+
+                        studentHostel.style.display =
+                            "none";
+                    }
+
+
+                    if (hostelSeparator) {
+
+                        hostelSeparator.style.display =
+                            "none";
+                    }
+
+
+                    /* Show Day Scholar main section */
+
+                    if (dayScholarInfo) {
+
+                        dayScholarInfo.style.display =
+                            "block";
+                    }
+
+
+                    /* Show commute section */
+
+                    if (dayScholarCommute) {
+
+                        dayScholarCommute.style.display =
+                            "block";
+                    }
+
+
+                    /* Show transport */
+
+                    if (transportAction) {
+
+                        transportAction.style.display =
+                            "flex";
+                    }
+
+
+                    /* Hide hosteller */
+
+                    if (hostellerInfo) {
+
+                        hostellerInfo.style.display =
+                            "none";
+                    }
+
+                }
+
+
+                /* =========================================
+                   UNKNOWN TYPE
+                ========================================= */
+
+                else {
+
+                    console.warn(
+                        "Unknown student type:",
+                        rawStudentType
+                    );
+
+
+                    if (studentType) {
+
+                        studentType.textContent =
+                            "Student";
+                    }
+
+                }
+
+            });
+
+    </script>
+
+
+    <!-- =================================================
+         EXISTING CAMPUS EASE SCRIPT
+    ================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

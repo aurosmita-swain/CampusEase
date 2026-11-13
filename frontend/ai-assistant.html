@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>AI Campus Assistant | CampusEase</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <!-- ===============================
+         NAVBAR
+    ================================ -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+        <nav>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="#">
+                Services
+            </a>
+
+            <a href="#">
+                Notices
+            </a>
+
+            <a href="#" id="logoutBtn">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ===============================
+         AI ASSISTANT
+    ================================ -->
+
+    <main class="ai-page">
+
+        <section class="ai-header">
+
+            <p class="small-title">
+                SMART CAMPUS SUPPORT
+            </p>
+
+            <h1>
+                AI Campus Assistant 🤖
+            </h1>
+
+            <p>
+                Ask CampusEase about campus services,
+                classrooms, notices, queues and more.
+            </p>
+
+        </section>
+
+
+        <!-- ===============================
+             CHAT CONTAINER
+        ================================ -->
+
+        <section class="ai-chat-card">
+
+            <div
+                class="chat-messages"
+                id="chatMessages"
+            >
+
+                <div class="chat-message bot-message">
+
+                    <div class="chat-icon">
+                        🤖
+                    </div>
+
+                    <div class="chat-bubble">
+
+                        <p>
+                            Hello! I'm your CampusEase
+                            Assistant. How can I help you?
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===============================
+                 CHAT INPUT
+            ================================ -->
+
+            <form id="aiChatForm">
+
+                <input
+                    type="text"
+                    id="aiQuestion"
+                    placeholder="Ask something about your campus..."
+                    autocomplete="off"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="auth-button"
+                >
+                    Send
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ===============================
+             QUICK QUESTIONS
+        ================================ -->
+
+        <section class="ai-quick-section">
+
+            <p class="small-title">
+                QUICK QUESTIONS
+            </p>
+
+            <div class="ai-quick-buttons">
+
+                <button type="button" class="ai-question-btn">
+                    🏫 Where is Room 204?
+                </button>
+
+                <button type="button" class="ai-question-btn">
+                    🎫 How does Digital Queue work?
+                </button>
+
+                <button type="button" class="ai-question-btn">
+                    📝 How can I apply for leave?
+                </button>
+
+                <button type="button" class="ai-question-btn">
+                    🛠️ How do I report a problem?
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ===============================
+         FOOTER
+    ================================ -->
+
+    <footer>
+
+        <p>
+            © 2026 CampusEase.
+            One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

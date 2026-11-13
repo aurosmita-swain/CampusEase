@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Queue Management | CampusEase</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+        <nav>
+
+            <a href="admin-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="admin-queue.html" class="active">
+                Queue
+            </a>
+
+            <a href="#">
+                Requests
+            </a>
+
+            <a href="#" id="adminLogoutBtn">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- Page Header -->
+    <main class="admin-dashboard">
+
+        <section class="welcome-section">
+
+            <div>
+
+                <p class="small-title">
+                    ADMIN PANEL
+                </p>
+
+                <h1>
+                    Queue Management 🎫
+                </h1>
+
+                <p class="student-details">
+                    View and manage student service queue tokens.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Queue Statistics -->
+        <section class="overview-grid">
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    🎫
+                </div>
+
+                <div>
+
+                    <p>
+                        Total Tokens
+                    </p>
+
+                    <h2 id="totalQueueTokens">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    ⏳
+                </div>
+
+                <div>
+
+                    <p>
+                        Waiting
+                    </p>
+
+                    <h2 id="waitingQueueTokens">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    🔔
+                </div>
+
+                <div>
+
+                    <p>
+                        Serving
+                    </p>
+
+                    <h2 id="servingQueueTokens">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    ✅
+                </div>
+
+                <div>
+
+                    <p>
+                        Completed
+                    </p>
+
+                    <h2 id="completedQueueTokens">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Queue List -->
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        DIGITAL QUEUE
+                    </p>
+
+                    <h2>
+                        Student Queue Tokens
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="request-grid"
+                id="adminQueueList"
+            >
+
+                <div class="request-card">
+
+                    <div>
+
+                        <h3>
+                            Loading queue...
+                        </h3>
+
+                        <p>
+                            Please wait while queue data is loaded.
+                        </p>
+
+                    </div>
+
+                    <span class="status pending">
+                        Loading
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Queue Information -->
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        QUEUE MANAGEMENT
+                    </p>
+
+                    <h2>
+                        How It Works
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-actions">
+
+                <div class="quick-action">
+
+                    <span>
+                        🎫
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Student Gets Token
+                        </strong>
+
+                        <small>
+                            Students join a digital queue from their dashboard.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="quick-action">
+
+                    <span>
+                        📋
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Admin Manages Queue
+                        </strong>
+
+                        <small>
+                            Admin can update the queue status.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="quick-action">
+
+                    <span>
+                        🔔
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Student Gets Status
+                        </strong>
+
+                        <small>
+                            Students can see their current queue status.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 CampusEase. One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        // =====================================================
+        // ESCAPE HTML
+        // =====================================================
+
+        function escapeHTML(value) {
+
+            if (
+                value === null ||
+                value === undefined
+            ) {
+
+                return "";
+
+            }
+
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        // =====================================================
+        // LOGOUT
+        // =====================================================
+
+        const logoutBtn =
+            document.getElementById("adminLogoutBtn");
+
+
+        if (logoutBtn) {
+
+            logoutBtn.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+                    localStorage.removeItem(
+                        "campusEaseUser"
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // STATUS CLASS
+        // =====================================================
+
+        function getQueueStatusClass(status) {
+
+            if (!status) {
+
+                return "pending";
+
+            }
+
+            const value =
+                status.toLowerCase();
+
+
+            if (value === "serving") {
+
+                return "approved";
+
+            }
+
+
+            if (value === "completed") {
+
+                return "completed";
+
+            }
+
+
+            return "pending";
+
+        }
+
+
+        // =====================================================
+        // LOAD ADMIN QUEUE
+        // =====================================================
+
+        async function loadAdminQueue() {
+
+            try {
+
+                const response =
+                    await fetch(
+                        "http://localhost:5000/api/admin/queue"
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Failed to load queue"
+                    );
+
+                }
+
+
+                const queueList =
+                    document.getElementById(
+                        "adminQueueList"
+                    );
+
+
+                queueList.innerHTML = "";
+
+
+                let total = data.length;
+
+                let waiting = 0;
+
+                let serving = 0;
+
+                let completed = 0;
+
+
+                // =================================================
+                // NO TOKENS
+                // =================================================
+
+                if (data.length === 0) {
+
+                    queueList.innerHTML = `
+
+                        <div class="request-card">
+
+                            <div>
+
+                                <h3>
+                                    No Queue Tokens
+                                </h3>
+
+                                <p>
+                                    There are currently no student queue tokens.
+                                </p>
+
+                            </div>
+
+                            <span class="status pending">
+                                Empty
+                            </span>
+
+                        </div>
+
+                    `;
+
+                }
+
+
+                // =================================================
+                // DISPLAY TOKENS
+                // =================================================
+
+                data.forEach(token => {
+
+                    const status =
+                        token.status ||
+                        "Waiting";
+
+
+                    // Count statuses
+
+                    if (
+                        status.toLowerCase() ===
+                        "waiting"
+                    ) {
+
+                        waiting++;
+
+                    }
+                    else if (
+                        status.toLowerCase() ===
+                        "serving"
+                    ) {
+
+                        serving++;
+
+                    }
+                    else if (
+                        status.toLowerCase() ===
+                        "completed"
+                    ) {
+
+                        completed++;
+
+                    }
+
+
+                    const statusClass =
+                        getQueueStatusClass(
+                            status
+                        );
+
+
+                    queueList.innerHTML += `
+
+                        <div class="request-card">
+
+                            <div>
+
+                                <h3>
+                                    Token #${escapeHTML(
+                                        token.token_number
+                                    )}
+                                </h3>
+
+
+                                <p>
+                                    <strong>
+                                        Student:
+                                    </strong>
+                                    ${escapeHTML(
+                                        token.student_name ||
+                                        "Student"
+                                    )}
+                                </p>
+
+
+                                <p>
+                                    <strong>
+                                        Service:
+                                    </strong>
+                                    ${escapeHTML(
+                                        token.service
+                                    )}
+                                </p>
+
+
+                                <p>
+                                    <strong>
+                                        Student ID:
+                                    </strong>
+                                    ${escapeHTML(
+                                        token.user_id_number ||
+                                        "N/A"
+                                    )}
+                                </p>
+
+
+                                <p>
+                                    <strong>
+                                        Current Status:
+                                    </strong>
+                                    ${escapeHTML(
+                                        status
+                                    )}
+                                </p>
+
+                            </div>
+
+
+                            <div
+                                style="
+                                    display:flex;
+                                    flex-direction:column;
+                                    gap:10px;
+                                    align-items:flex-end;
+                                "
+                            >
+
+                                <span
+                                    class="status ${statusClass}"
+                                >
+                                    ${escapeHTML(
+                                        status
+                                    )}
+                                </span>
+
+
+                                <select
+                                    id="status-${token.id}"
+                                    style="
+                                        padding:10px;
+                                        border-radius:8px;
+                                        border:1px solid #263653;
+                                        background:#111b30;
+                                        color:white;
+                                    "
+                                >
+
+                                    <option
+                                        value="Waiting"
+                                        ${status === "Waiting"
+                                            ? "selected"
+                                            : ""}
+                                    >
+                                        Waiting
+                                    </option>
+
+
+                                    <option
+                                        value="Serving"
+                                        ${status === "Serving"
+                                            ? "selected"
+                                            : ""}
+                                    >
+                                        Serving
+                                    </option>
+
+
+                                    <option
+                                        value="Completed"
+                                        ${status === "Completed"
+                                            ? "selected"
+                                            : ""}
+                                    >
+                                        Completed
+                                    </option>
+
+                                </select>
+
+
+                                <button
+                                    type="button"
+                                    class="primary-btn"
+                                    onclick="updateQueueStatus(${token.id})"
+                                >
+                                    Update Status
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                });
+
+
+                // =================================================
+                // UPDATE STATISTICS
+                // =================================================
+
+                document.getElementById(
+                    "totalQueueTokens"
+                ).textContent =
+                    total;
+
+
+                document.getElementById(
+                    "waitingQueueTokens"
+                ).textContent =
+                    waiting;
+
+
+                document.getElementById(
+                    "servingQueueTokens"
+                ).textContent =
+                    serving;
+
+
+                document.getElementById(
+                    "completedQueueTokens"
+                ).textContent =
+                    completed;
+
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Queue loading error:",
+                    error
+                );
+
+
+                document.getElementById(
+                    "adminQueueList"
+                ).innerHTML = `
+
+                    <div class="request-card">
+
+                        <div>
+
+                            <h3>
+                                Unable to Load Queue
+                            </h3>
+
+                            <p>
+                                Please make sure the CampusEase server is running.
+                            </p>
+
+                        </div>
+
+                        <span class="status pending">
+                            Error
+                        </span>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        // =====================================================
+        // UPDATE QUEUE STATUS
+        // =====================================================
+
+        async function updateQueueStatus(queueId) {
+
+            const select =
+                document.getElementById(
+                    `status-${queueId}`
+                );
+
+
+            if (!select) {
+
+                return;
+
+            }
+
+
+            const status =
+                select.value;
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `http://localhost:5000/api/admin/queue/${queueId}/status`,
+                        {
+                            method: "PUT",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                status: status
+                            })
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Failed to update queue status."
+                    );
+
+                }
+
+
+                alert(
+                    "Queue status updated successfully."
+                );
+
+
+                // Reload queue
+
+                loadAdminQueue();
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Queue status update error:",
+                    error
+                );
+
+
+                alert(
+                    error.message ||
+                    "Failed to update queue status."
+                );
+
+            }
+
+        }
+
+
+        // =====================================================
+        // START
+        // =====================================================
+
+        loadAdminQueue();
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Fee Management | CampusEase</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+
+        <nav>
+
+            <a href="admin-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="admin-documents.html">
+                Requests
+            </a>
+
+            <a href="admin-problems.html">
+                Complaints
+            </a>
+
+            <a
+                href="admin-fees.html"
+                class="active"
+            >
+                Fees
+            </a>
+
+            <a
+                href="#"
+                id="adminLogoutBtn"
+            >
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- PAGE HEADER -->
+
+    <main class="admin-dashboard">
+
+        <section class="welcome-section">
+
+            <div>
+
+                <p class="small-title">
+                    ADMIN PANEL
+                </p>
+
+                <h1>
+                    Fee Management 💳
+                </h1>
+
+                <p class="student-details">
+                    Manage course fees, hostel fees and student payments.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FEE FORM -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        STUDENT FEES
+                    </p>
+
+                    <h2>
+                        Set Student Fee
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="request-card">
+
+                <form id="feeForm">
+
+
+                    <label for="studentId">
+                        Student Registration No.
+                    </label>
+
+                    <input
+                        type="text"
+                        id="studentId"
+                        placeholder="Example: REC2025CSE001"
+                        required
+                    >
+
+
+                    <label for="courseFee">
+                        Course Fee (₹)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="courseFee"
+                        placeholder="Enter course fee"
+                        min="0"
+                        required
+                    >
+
+
+                    <label for="hostelFee">
+                        Hostel Fee (₹)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="hostelFee"
+                        placeholder="Enter hostel fee"
+                        min="0"
+                        required
+                    >
+
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                    >
+                        Save Fee Details
+                    </button>
+
+                </form>
+
+
+                <div
+                    id="feeMessage"
+                    style="display:none;"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- STUDENT FEE LIST -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        PAYMENT OVERVIEW
+                    </p>
+
+                    <h2>
+                        Student Fee Records
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="request-grid"
+                id="feeRecords"
+            >
+
+                <div class="request-card">
+
+                    <div>
+
+                        <h3>
+                            Loading fee records...
+                        </h3>
+
+                        <p>
+                            Please wait.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 CampusEase. One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

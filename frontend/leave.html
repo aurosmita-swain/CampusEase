@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Leave Request | CampusEase</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="queue-page">
+
+    <nav class="navbar">
+        <div class="logo">CampusEase</div>
+
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="queue.html">Services</a>
+            <a href="#">Notices</a>
+            <a href="login.html">Logout</a>
+        </div>
+    </nav>
+
+    <section class="queue-header">
+        <div>
+            <h1>Leave Request 📝</h1>
+            <p>Submit a leave request and track its status.</p>
+        </div>
+    </section>
+
+    <main class="queue-card">
+
+        <h2>Apply for Leave</h2>
+
+        <form id="leaveForm">
+
+            <label for="fromDate">From Date</label>
+            <input
+                type="date"
+                id="fromDate"
+                required
+            >
+
+            <label for="toDate">To Date</label>
+            <input
+                type="date"
+                id="toDate"
+                required
+            >
+
+            <label for="leaveReason">Reason</label>
+            <textarea
+                id="leaveReason"
+                rows="5"
+                placeholder="Enter reason for leave"
+                required
+            ></textarea>
+
+            <button type="submit" class="primary-btn">
+                Submit Leave Request
+            </button>
+
+        </form>
+
+        <div id="leaveSuccess" class="token-card" style="display: none;">
+            <h3>Leave Request Submitted ✅</h3>
+
+            <p>
+                Your request has been sent to the relevant warden.
+            </p>
+
+            <p>
+                Status:
+                <strong>Pending</strong>
+            </p>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 CampusEase. One Campus. One Platform.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

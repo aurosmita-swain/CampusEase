@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Document Requests | CampusEase</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <!-- ===============================
+         NAVBAR
+    ================================ -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+        <nav>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="#">
+                Services
+            </a>
+
+            <a href="#">
+                Notices
+            </a>
+
+            <a href="#" id="logoutBtn">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ===============================
+         DOCUMENT REQUEST PAGE
+    ================================ -->
+
+    <main class="document-page">
+
+
+        <!-- PAGE HEADER -->
+
+        <section class="document-header">
+
+            <p class="small-title">
+                DIGITAL CAMPUS SERVICE
+            </p>
+
+            <h1>
+                Document Requests 📄
+            </h1>
+
+            <p>
+                Request important college documents
+                without visiting the office repeatedly.
+            </p>
+
+        </section>
+
+
+        <!-- ===============================
+             REQUEST FORM
+        ================================ -->
+
+        <section class="document-card">
+
+            <h2>
+                Request a Document
+            </h2>
+
+            <p class="document-description">
+                Select the document you need and
+                submit your request.
+            </p>
+
+
+            <form id="documentForm">
+
+
+                <div class="form-group">
+
+                    <label for="documentType">
+                        Select Document
+                    </label>
+
+                    <select
+                        id="documentType"
+                        required
+                    >
+
+                        <option value="">
+                            Choose a document
+                        </option>
+
+                        <option value="Bonafide Certificate">
+                            Bonafide Certificate
+                        </option>
+
+                        <option value="Character Certificate">
+                            Character Certificate
+                        </option>
+
+                        <option value="Migration Certificate">
+                            Migration Certificate
+                        </option>
+
+                        <option value="Fee Receipt">
+                            Fee Receipt
+                        </option>
+
+                        <option value="Transcript">
+                            Transcript
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="documentPurpose">
+                        Purpose
+                    </label>
+
+                    <textarea
+                        id="documentPurpose"
+                        rows="4"
+                        placeholder="Enter the purpose of this document"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="auth-button"
+                    id="documentSubmitBtn"
+                >
+                    Submit Request
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ===============================
+             SUCCESS MESSAGE
+        ================================ -->
+
+        <section
+            class="document-success"
+            id="documentSuccess"
+            style="display: none;"
+        >
+
+            <div class="document-success-icon">
+                ✅
+            </div>
+
+            <h2>
+                Request Submitted
+            </h2>
+
+            <p id="documentSuccessText">
+                Your document request has been submitted successfully.
+            </p>
+
+            <span class="status pending">
+                Pending
+            </span>
+
+        </section>
+
+
+        <!-- ===============================
+             INFORMATION
+        ================================ -->
+
+        <section class="document-info-grid">
+
+
+            <div class="document-info-card">
+
+                <div class="overview-icon">
+                    📄
+                </div>
+
+                <h3>
+                    Digital Request
+                </h3>
+
+                <p>
+                    Submit your document request
+                    without standing in an office queue.
+                </p>
+
+            </div>
+
+
+            <div class="document-info-card">
+
+                <div class="overview-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Track Status
+                </h3>
+
+                <p>
+                    Track your document request
+                    directly from your dashboard.
+                </p>
+
+            </div>
+
+
+            <div class="document-info-card">
+
+                <div class="overview-icon">
+                    🔔
+                </div>
+
+                <h3>
+                    Get Notified
+                </h3>
+
+                <p>
+                    Know when your requested document
+                    is ready.
+                </p>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- ===============================
+         FOOTER
+    ================================ -->
+
+    <footer>
+
+        <p>
+            © 2026 CampusEase.
+            One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

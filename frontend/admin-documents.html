@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Document Requests | CampusEase</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ============================= -->
+    <!-- NAVBAR -->
+    <!-- ============================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+
+        <nav>
+
+            <a href="admin-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="admin-queue.html">
+                Queue
+            </a>
+
+            <a
+                href="admin-documents.html"
+                class="active"
+            >
+                Requests
+            </a>
+
+            <a
+                href="#"
+                id="adminLogoutBtn"
+            >
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ============================= -->
+    <!-- MAIN -->
+    <!-- ============================= -->
+
+    <main class="admin-dashboard">
+
+
+        <!-- PAGE HEADER -->
+
+        <section class="welcome-section">
+
+            <div>
+
+                <p class="small-title">
+                    ADMIN PANEL
+                </p>
+
+
+                <h1>
+                    Document Requests 📄
+                </h1>
+
+
+                <p class="student-details">
+                    View and manage student document requests.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ============================= -->
+        <!-- STATISTICS -->
+        <!-- ============================= -->
+
+        <section class="overview-grid">
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    📄
+                </div>
+
+                <div>
+
+                    <p>
+                        Total Requests
+                    </p>
+
+                    <h2 id="totalDocuments">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    ⏳
+                </div>
+
+                <div>
+
+                    <p>
+                        Pending
+                    </p>
+
+                    <h2 id="pendingDocuments">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    🔄
+                </div>
+
+                <div>
+
+                    <p>
+                        Processing
+                    </p>
+
+                    <h2 id="processingDocuments">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    ✅
+                </div>
+
+                <div>
+
+                    <p>
+                        Completed
+                    </p>
+
+                    <h2 id="completedDocuments">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ============================= -->
+        <!-- DOCUMENT REQUEST LIST -->
+        <!-- ============================= -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        STUDENT REQUESTS
+                    </p>
+
+
+                    <h2>
+                        Document Requests
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="request-grid"
+                id="adminDocumentRequests"
+            >
+
+                <div class="request-card">
+
+                    <div>
+
+                        <h3>
+                            Loading requests...
+                        </h3>
+
+
+                        <p>
+                            Please wait while document requests are loaded.
+                        </p>
+
+                    </div>
+
+
+                    <span class="status pending">
+                        Loading
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ============================= -->
+    <!-- FOOTER -->
+    <!-- ============================= -->
+
+    <footer>
+
+        <p>
+            © 2026 CampusEase. One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+
+    <script>
+
+
+        // =====================================================
+        // ESCAPE HTML
+        // =====================================================
+
+        function escapeHTML(value) {
+
+            if (
+                value === null ||
+                value === undefined
+            ) {
+
+                return "";
+
+            }
+
+
+            return String(value)
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+
+        // =====================================================
+        // LOGOUT
+        // =====================================================
+
+        const logoutBtn =
+            document.getElementById(
+                "adminLogoutBtn"
+            );
+
+
+        if (logoutBtn) {
+
+            logoutBtn.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+
+                    localStorage.removeItem(
+                        "campusEaseUser"
+                    );
+
+
+                    window.location.href =
+                        "login.html";
+
+                }
+            );
+
+        }
+
+
+
+        // =====================================================
+        // STATUS CLASS
+        // =====================================================
+
+        function getDocumentStatusClass(
+            status
+        ) {
+
+            if (!status) {
+
+                return "pending";
+
+            }
+
+
+            const value =
+                status.toLowerCase();
+
+
+            if (
+                value === "processing"
+            ) {
+
+                return "processing";
+
+            }
+
+
+            if (
+                value === "completed"
+            ) {
+
+                return "completed";
+
+            }
+
+
+            return "pending";
+
+        }
+
+
+
+        // =====================================================
+        // LOAD DOCUMENT REQUESTS
+        // =====================================================
+
+        async function loadAdminDocuments() {
+
+            try {
+
+
+                const response =
+                    await fetch(
+                        "http://localhost:5000/api/admin/documents"
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Failed to load document requests."
+                    );
+
+                }
+
+
+                const requests =
+                    data.requests || [];
+
+
+                const container =
+                    document.getElementById(
+                        "adminDocumentRequests"
+                    );
+
+
+                container.innerHTML = "";
+
+
+                let total = requests.length;
+
+                let pending = 0;
+
+                let processing = 0;
+
+                let completed = 0;
+
+
+
+                // =================================================
+                // NO REQUESTS
+                // =================================================
+
+                if (
+                    requests.length === 0
+                ) {
+
+                    container.innerHTML = `
+
+                        <div class="request-card">
+
+                            <div>
+
+                                <h3>
+                                    No Document Requests
+                                </h3>
+
+                                <p>
+                                    There are currently no student document requests.
+                                </p>
+
+                            </div>
+
+
+                            <span class="status pending">
+                                Empty
+                            </span>
+
+                        </div>
+
+                    `;
+
+                }
+
+
+
+                // =================================================
+                // DISPLAY REQUESTS
+                // =================================================
+
+                requests.forEach(
+                    request => {
+
+
+                        const status =
+                            request.status ||
+                            "Pending";
+
+
+                        // Count status
+
+                        if (
+                            status ===
+                            "Pending"
+                        ) {
+
+                            pending++;
+
+                        }
+
+
+                        else if (
+                            status ===
+                            "Processing"
+                        ) {
+
+                            processing++;
+
+                        }
+
+
+                        else if (
+                            status ===
+                            "Completed"
+                        ) {
+
+                            completed++;
+
+                        }
+
+
+
+                        const statusClass =
+                            getDocumentStatusClass(
+                                status
+                            );
+
+
+
+                        container.innerHTML += `
+
+                            <div class="request-card">
+
+
+                                <div>
+
+                                    <h3>
+                                        ${escapeHTML(
+                                            request.document_type
+                                        )}
+                                    </h3>
+
+
+                                    <p>
+
+                                        <strong>
+                                            Student:
+                                        </strong>
+
+                                        ${escapeHTML(
+                                            request.student_name ||
+                                            "Student"
+                                        )}
+
+                                    </p>
+
+
+                                    <p>
+
+                                        <strong>
+                                            Student ID:
+                                        </strong>
+
+                                        ${escapeHTML(
+                                            request.user_id_number ||
+                                            "N/A"
+                                        )}
+
+                                    </p>
+
+
+                                    <p>
+
+                                        <strong>
+                                            Purpose:
+                                        </strong>
+
+                                        ${escapeHTML(
+                                            request.purpose
+                                        )}
+
+                                    </p>
+
+
+                                    <p>
+
+                                        <strong>
+                                            Requested:
+                                        </strong>
+
+                                        ${escapeHTML(
+                                            new Date(
+                                                request.created_at
+                                            ).toLocaleDateString()
+                                        )}
+
+                                    </p>
+
+
+                                    <p>
+
+                                        <strong>
+                                            Current Status:
+                                        </strong>
+
+                                        ${escapeHTML(
+                                            status
+                                        )}
+
+                                    </p>
+
+                                </div>
+
+
+
+                                <div
+                                    style="
+                                        display:flex;
+                                        flex-direction:column;
+                                        gap:10px;
+                                        align-items:flex-end;
+                                    "
+                                >
+
+
+                                    <span
+                                        class="status ${statusClass}"
+                                    >
+
+                                        ${escapeHTML(
+                                            status
+                                        )}
+
+                                    </span>
+
+
+
+                                    <select
+                                        id="document-status-${request.id}"
+                                        style="
+                                            padding:10px;
+                                            border-radius:8px;
+                                            border:1px solid #263653;
+                                            background:#111b30;
+                                            color:white;
+                                        "
+                                    >
+
+
+                                        <option
+                                            value="Pending"
+                                            ${status === "Pending"
+                                                ? "selected"
+                                                : ""}
+                                        >
+                                            Pending
+                                        </option>
+
+
+                                        <option
+                                            value="Processing"
+                                            ${status === "Processing"
+                                                ? "selected"
+                                                : ""}
+                                        >
+                                            Processing
+                                        </option>
+
+
+                                        <option
+                                            value="Completed"
+                                            ${status === "Completed"
+                                                ? "selected"
+                                                : ""}
+                                        >
+                                            Completed
+                                        </option>
+
+
+                                    </select>
+
+
+
+                                    <button
+                                        type="button"
+                                        class="primary-btn"
+                                        onclick="updateDocumentStatus(${request.id})"
+                                    >
+                                        Update Status
+                                    </button>
+
+
+                                </div>
+
+
+                            </div>
+
+                        `;
+
+                    }
+                );
+
+
+
+                // =================================================
+                // UPDATE STATISTICS
+                // =================================================
+
+                document.getElementById(
+                    "totalDocuments"
+                ).textContent =
+                    total;
+
+
+                document.getElementById(
+                    "pendingDocuments"
+                ).textContent =
+                    pending;
+
+
+                document.getElementById(
+                    "processingDocuments"
+                ).textContent =
+                    processing;
+
+
+                document.getElementById(
+                    "completedDocuments"
+                ).textContent =
+                    completed;
+
+
+            }
+
+
+            catch (error) {
+
+
+                console.error(
+                    "Document loading error:",
+                    error
+                );
+
+
+                document.getElementById(
+                    "adminDocumentRequests"
+                ).innerHTML = `
+
+                    <div class="request-card">
+
+                        <div>
+
+                            <h3>
+                                Unable to Load Requests
+                            </h3>
+
+                            <p>
+                                Please make sure the CampusEase server is running.
+                            </p>
+
+                        </div>
+
+                        <span class="status pending">
+                            Error
+                        </span>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+
+        // =====================================================
+        // UPDATE DOCUMENT STATUS
+        // =====================================================
+
+        async function updateDocumentStatus(
+            requestId
+        ) {
+
+
+            const select =
+                document.getElementById(
+                    `document-status-${requestId}`
+                );
+
+
+            if (!select) {
+
+                return;
+
+            }
+
+
+            const status =
+                select.value;
+
+
+
+            try {
+
+
+                const response =
+                    await fetch(
+                        `http://localhost:5000/api/admin/documents/${requestId}/status`,
+                        {
+
+                            method:
+                                "PUT",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    status:
+                                        status
+                                })
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Failed to update document status."
+                    );
+
+                }
+
+
+
+                alert(
+                    "Document request status updated successfully."
+                );
+
+
+                loadAdminDocuments();
+
+            }
+
+
+            catch (error) {
+
+
+                console.error(
+                    "Document status update error:",
+                    error
+                );
+
+
+                alert(
+                    error.message ||
+                    "Failed to update document status."
+                );
+
+            }
+
+        }
+
+
+
+        // =====================================================
+        // START
+        // =====================================================
+
+        loadAdminDocuments();
+
+
+    </script>
+
+
+</body>
+
+</html>

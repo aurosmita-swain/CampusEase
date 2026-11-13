@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Problem Reports | CampusEase</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+        <nav>
+
+            <a href="admin-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="admin-queue.html">
+                Queue
+            </a>
+
+            <a href="admin-problems.html" class="active">
+                Problems
+            </a>
+
+            <a href="admin-documents.html">
+                Requests
+            </a>
+
+            <a href="#" id="adminProblemLogout">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="admin-dashboard">
+
+        <!-- Page Header -->
+
+        <section class="welcome-section">
+
+            <div>
+
+                <p class="small-title">
+                    CAMPUS PROBLEM MANAGEMENT
+                </p>
+
+                <h1>
+                    Student Problem Reports 🛠️
+                </h1>
+
+                <p class="student-details">
+                    Review student problems and assign them to the appropriate maintenance team.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= STATISTICS ================= -->
+
+        <section class="overview-grid">
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    📋
+                </div>
+
+                <div>
+
+                    <p>Total Reports</p>
+
+                    <h2 id="totalProblemReports">
+                        -
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    ⏳
+                </div>
+
+                <div>
+
+                    <p>Pending</p>
+
+                    <h2 id="pendingProblemReports">
+                        -
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    🔧
+                </div>
+
+                <div>
+
+                    <p>In Progress</p>
+
+                    <h2 id="progressProblemReports">
+                        -
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    ✅
+                </div>
+
+                <div>
+
+                    <p>Resolved</p>
+
+                    <h2 id="resolvedProblemReports">
+                        -
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROBLEM REPORTS ================= -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        STUDENT REPORTS
+                    </p>
+
+                    <h2>
+                        Reported Problems
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="complaint-list"
+                id="adminProblemReports"
+            >
+
+                <div class="complaint-card">
+
+                    <div class="complaint-info">
+
+                        <div class="complaint-icon">
+                            🔧
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Loading reports...
+                            </h3>
+
+                            <p>
+                                Please wait while reports are loaded.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 CampusEase. One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        // =====================================================
+        // CHECK ADMIN LOGIN
+        // =====================================================
+
+        const adminUser =
+            localStorage.getItem("campusEaseUser");
+
+
+        if (!adminUser) {
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        // =====================================================
+        // LOAD PROBLEM REPORTS
+        // =====================================================
+
+        async function loadAdminProblems() {
+
+            try {
+
+                const response =
+                    await fetch(
+                        "http://localhost:5000/api/admin/problems"
+                    );
+
+
+                const reports =
+                    await response.json();
+
+
+                const container =
+                    document.getElementById(
+                        "adminProblemReports"
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        reports.message ||
+                        "Failed to load reports."
+                    );
+
+                }
+
+
+                // ---------------------------------------------
+                // NO REPORTS
+                // ---------------------------------------------
+
+                if (reports.length === 0) {
+
+                    container.innerHTML = `
+
+                        <div class="complaint-card">
+
+                            <div class="complaint-info">
+
+                                <div class="complaint-icon">
+                                    ✅
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        No Problem Reports
+                                    </h3>
+
+                                    <p>
+                                        There are currently no student problem reports.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+
+                    updateProblemStats([]);
+
+                    return;
+
+                }
+
+
+                // ---------------------------------------------
+                // CLEAR LOADING
+                // ---------------------------------------------
+
+                container.innerHTML = "";
+
+
+                // ---------------------------------------------
+                // CREATE EACH REPORT
+                // ---------------------------------------------
+
+                reports.forEach(report => {
+
+                    const card =
+                        document.createElement("div");
+
+
+                    card.className =
+                        "complaint-card";
+
+
+                    card.innerHTML = `
+
+                        <div class="complaint-info">
+
+                            <div class="complaint-icon">
+                                🛠️
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    ${escapeHTML(report.title)}
+                                </h3>
+
+                                <p>
+                                    <strong>Student:</strong>
+                                    ${escapeHTML(
+                                        report.student_name ||
+                                        "Unknown"
+                                    )}
+                                </p>
+
+                                <p>
+                                    <strong>Student ID:</strong>
+                                    ${escapeHTML(
+                                        report.user_id_number ||
+                                        "N/A"
+                                    )}
+                                </p>
+
+                                <p>
+                                    <strong>Category:</strong>
+                                    ${escapeHTML(
+                                        report.category ||
+                                        "N/A"
+                                    )}
+                                </p>
+
+                                <p>
+                                    <strong>Location:</strong>
+                                    ${escapeHTML(
+                                        report.location ||
+                                        "N/A"
+                                    )}
+                                </p>
+
+                                <p>
+                                    <strong>Description:</strong>
+                                    ${escapeHTML(
+                                        report.description ||
+                                        "N/A"
+                                    )}
+                                </p>
+
+                                <p>
+                                    <strong>Reported:</strong>
+                                    ${formatDate(
+                                        report.created_at
+                                    )}
+                                </p>
+
+                                <p>
+                                    <strong>Assigned To:</strong>
+                                    ${escapeHTML(
+                                        report.assigned_to ||
+                                        "Not assigned"
+                                    )}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- STATUS -->
+
+                        <div class="problem-management">
+
+                            <div class="problem-control">
+
+                                <label>
+                                    Maintenance Team
+                                </label>
+
+                                <select
+                                    id="maintenance-${report.id}"
+                                    class="problem-select"
+                                >
+
+                                    <option value="">
+                                        Select maintenance team
+                                    </option>
+
+                                    <option
+                                        value="Electrical Maintenance Team"
+                                        ${report.assigned_to === "Electrical Maintenance Team"
+                                            ? "selected"
+                                            : ""}
+                                    >
+                                        Electrical Maintenance Team
+                                    </option>
+
+                                    <option
+                                        value="Civil Maintenance Team"
+                                        ${report.assigned_to === "Civil Maintenance Team"
+                                            ? "selected"
+                                            : ""}
+                                    >
+                                        Civil Maintenance Team
+                                    </option>
+
+                                    <option
+                                        value="Plumbing Maintenance Team"
+                                        ${report.assigned_to === "Plumbing Maintenance Team"
+                                            ? "selected"
+                                            : ""}
+                                    >
+                                        Plumbing Maintenance Team
+                                    </option>
+
+                                    <option
+                                        value="IT / Network Team"
+                                        ${report.assigned_to === "IT / Network Team"
+                                            ? "selected"
+                                            : ""}
+                                    >
+                                        IT / Network Team
+                                    </option>
+
+                                    <option
+                                        value="Housekeeping Team"
+                                        ${report.assigned_to === "Housekeeping Team"
+                                            ? "selected"
+                                            : ""}
+                                    >
+                                        Housekeeping Team
+                                    </option>
+
+                                    <option
+                                        value="Hostel Maintenance Team"
+                                        ${report.assigned_to === "Hostel Maintenance Team"
+                                            ? "selected"
+                                            : ""}
+                                    >
+                                        Hostel Maintenance Team
+                                    </option>
+
+                                    <option
+                                        value="General Maintenance Team"
+                                        ${report.assigned_to === "General Maintenance Team"
+                                            ? "selected"
+                                            : ""}
+                                    >
+                                        General Maintenance Team
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="problem-control">
+
+                                <label>
+                                    Problem Status
+                                </label>
+
+                                <select
+                                    id="status-${report.id}"
+                                    class="problem-select"
+                                >
+
+                                    <option
+                                        value="Pending"
+                                        ${report.status === "Pending"
+                                            ? "selected"
+                                            : ""}
+                                    >
+                                        Pending
+                                    </option>
+
+                                    <option
+                                        value="In Progress"
+                                        ${report.status === "In Progress"
+                                            ? "selected"
+                                            : ""}
+                                    >
+                                        In Progress
+                                    </option>
+
+                                    <option
+                                        value="Resolved"
+                                        ${report.status === "Resolved"
+                                            ? "selected"
+                                            : ""}
+                                    >
+                                        Resolved
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="primary-btn update-problem-btn"
+                                onclick="updateProblem(${report.id})"
+                            >
+                                Update Problem
+                            </button>
+
+
+                            <span
+                                id="update-message-${report.id}"
+                                class="update-message"
+                            ></span>
+
+                        </div>
+
+
+                        <span class="status ${getStatusClass(report.status)}">
+                            ${escapeHTML(
+                                report.status ||
+                                "Pending"
+                            )}
+                        </span>
+
+                    `;
+
+
+                    container.appendChild(card);
+
+                });
+
+
+                updateProblemStats(reports);
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Problem report error:",
+                    error
+                );
+
+
+                document.getElementById(
+                    "adminProblemReports"
+                ).innerHTML = `
+
+                    <div class="complaint-card">
+
+                        <div class="complaint-info">
+
+                            <div class="complaint-icon">
+                                ⚠️
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Unable to Load Reports
+                                </h3>
+
+                                <p>
+                                    Make sure the CampusEase server is running.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        // =====================================================
+        // UPDATE PROBLEM
+        // =====================================================
+
+        async function updateProblem(problemId) {
+
+            const maintenance =
+                document.getElementById(
+                    `maintenance-${problemId}`
+                ).value;
+
+
+            const status =
+                document.getElementById(
+                    `status-${problemId}`
+                ).value;
+
+
+            const message =
+                document.getElementById(
+                    `update-message-${problemId}`
+                );
+
+
+            // ---------------------------------------------
+            // REQUIRE MAINTENANCE FOR ACTIVE WORK
+            // ---------------------------------------------
+
+            if (
+                (status === "In Progress" ||
+                 status === "Resolved") &&
+                maintenance === ""
+            ) {
+
+                message.textContent =
+                    "Please select a maintenance team first.";
+
+                message.style.color =
+                    "#ff6b6b";
+
+                return;
+
+            }
+
+
+            // ---------------------------------------------
+            // SHOW UPDATING
+            // ---------------------------------------------
+
+            message.textContent =
+                "Updating...";
+
+            message.style.color =
+                "#34d3eb";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `http://localhost:5000/api/admin/problems/${problemId}/status`,
+                        {
+                            method: "PUT",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                status:
+                                    status,
+
+                                assignedTo:
+                                    maintenance ||
+                                    null
+
+                            })
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Failed to update problem."
+                    );
+
+                }
+
+
+                // ---------------------------------------------
+                // SUCCESS
+                // ---------------------------------------------
+
+                message.textContent =
+                    "Updated successfully ✓";
+
+                message.style.color =
+                    "#4ade80";
+
+
+                // Reload reports so the latest
+                // status and assignment are visible.
+
+                setTimeout(
+                    () => {
+                        loadAdminProblems();
+                    },
+                    500
+                );
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Update problem error:",
+                    error
+                );
+
+
+                message.textContent =
+                    error.message ||
+                    "Failed to update problem.";
+
+                message.style.color =
+                    "#ff6b6b";
+
+            }
+
+        }
+
+
+        // =====================================================
+        // UPDATE STATISTICS
+        // =====================================================
+
+        function updateProblemStats(reports) {
+
+            const total =
+                reports.length;
+
+
+            const pending =
+                reports.filter(
+                    report =>
+                        report.status === "Pending"
+                ).length;
+
+
+            const progress =
+                reports.filter(
+                    report =>
+                        report.status === "In Progress"
+                ).length;
+
+
+            const resolved =
+                reports.filter(
+                    report =>
+                        report.status === "Resolved"
+                ).length;
+
+
+            document.getElementById(
+                "totalProblemReports"
+            ).textContent =
+                total;
+
+
+            document.getElementById(
+                "pendingProblemReports"
+            ).textContent =
+                pending;
+
+
+            document.getElementById(
+                "progressProblemReports"
+            ).textContent =
+                progress;
+
+
+            document.getElementById(
+                "resolvedProblemReports"
+            ).textContent =
+                resolved;
+
+        }
+
+
+        // =====================================================
+        // STATUS CSS CLASS
+        // =====================================================
+
+        function getStatusClass(status) {
+
+            if (!status) {
+
+                return "pending";
+
+            }
+
+
+            const value =
+                status.toLowerCase();
+
+
+            if (value === "resolved") {
+
+                return "approved";
+
+            }
+
+
+            if (value === "in progress") {
+
+                return "processing";
+
+            }
+
+
+            return "pending";
+
+        }
+
+
+        // =====================================================
+        // FORMAT DATE
+        // =====================================================
+
+        function formatDate(date) {
+
+            if (!date) {
+
+                return "N/A";
+
+            }
+
+
+            return new Date(date).toLocaleString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // PREVENT HTML INJECTION
+        // =====================================================
+
+        function escapeHTML(value) {
+
+            if (value === null ||
+                value === undefined) {
+
+                return "";
+
+            }
+
+
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        // =====================================================
+        // ADMIN LOGOUT
+        // =====================================================
+
+        document.getElementById(
+            "adminProblemLogout"
+        ).addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+
+                localStorage.removeItem(
+                    "campusEaseUser"
+                );
+
+
+                window.location.href =
+                    "login.html";
+
+            }
+        );
+
+
+        // =====================================================
+        // LOAD REPORTS
+        // =====================================================
+
+        loadAdminProblems();
+
+    </script>
+
+</body>
+
+</html>

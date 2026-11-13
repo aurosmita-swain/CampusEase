@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Attendance | Faculty | CampusEase</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="faculty-dashboard">
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+        <div class="nav-links">
+
+            <a href="faculty-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="faculty-attendance.html">
+                Attendance
+            </a>
+
+            <a href="#">
+                Students
+            </a>
+
+            <a href="#">
+                Notices
+            </a>
+
+            <a href="login.html">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HEADER -->
+
+    <section class="dashboard-hero">
+
+        <div>
+
+            <p class="small-title">
+                FACULTY SERVICES
+            </p>
+
+            <h1>
+                Attendance Management 📝
+            </h1>
+
+            <p class="dashboard-subtitle">
+                Mark and manage student attendance
+                quickly from one place.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN -->
+
+    <main class="dashboard-container">
+
+
+        <!-- FILTERS -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        ATTENDANCE
+                    </p>
+
+                    <h2>
+                        Select Class
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="attendance-filters">
+
+                <div>
+
+                    <label for="attendanceSubject">
+                        Subject
+                    </label>
+
+                    <select id="attendanceSubject">
+
+                        <option value="">
+                            Select Subject
+                        </option>
+
+                        <option value="Data Structures">
+                            Data Structures
+                        </option>
+
+                        <option value="OOPS">
+                            Object Oriented Programming
+                        </option>
+
+                        <option value="WAD">
+                            Web Application Development
+                        </option>
+
+                        <option value="Economics">
+                            Economics
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                    <label for="attendanceSection">
+                        Section
+                    </label>
+
+                    <select id="attendanceSection">
+
+                        <option value="">
+                            Select Section
+                        </option>
+
+                        <option value="A">
+                            Section A
+                        </option>
+
+                        <option value="B">
+                            Section B
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                    <label for="attendanceDate">
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="attendanceDate"
+                    >
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    id="loadStudentsBtn"
+                >
+                    Load Students
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ATTENDANCE SUMMARY -->
+
+        <section class="dashboard-section">
+
+            <div class="attendance-summary">
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Total Students
+                    </span>
+
+                    <strong id="totalAttendanceStudents">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Present
+                    </span>
+
+                    <strong id="presentStudents">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Absent
+                    </span>
+
+                    <strong id="absentStudents">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Attendance
+                    </span>
+
+                    <strong id="attendancePercentage">
+                        0%
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- STUDENT LIST -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        STUDENTS
+                    </p>
+
+                    <h2>
+                        Mark Attendance
+                    </h2>
+
+                </div>
+
+                <span
+                    class="status processing"
+                    id="attendanceStatus"
+                >
+                    Not Loaded
+                </span>
+
+            </div>
+
+
+            <div
+                class="attendance-list"
+                id="attendanceStudentList"
+            >
+
+                <div class="attendance-empty">
+
+                    <div>
+                        📝
+                    </div>
+
+                    <h3>
+                        No students loaded
+                    </h3>
+
+                    <p>
+                        Select subject, section and date,
+                        then click Load Students.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="primary-btn attendance-save-btn"
+                id="saveAttendanceBtn"
+            >
+                Save Attendance
+            </button>
+
+        </section>
+
+
+        <!-- MESSAGE -->
+
+        <div
+            id="attendanceMessage"
+            class="attendance-message"
+        ></div>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 CampusEase.
+            One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

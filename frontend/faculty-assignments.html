@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Assignments | Faculty | CampusEase</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="faculty-dashboard">
+
+    <nav class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+        <div class="nav-links">
+
+            <a href="faculty-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="faculty-attendance.html">
+                Attendance
+            </a>
+
+            <a href="faculty-students.html">
+                Students
+            </a>
+
+            <a href="faculty-assignments.html">
+                Assignments
+            </a>
+
+            <a href="login.html">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <section class="dashboard-hero">
+
+        <div>
+
+            <p class="small-title">
+                FACULTY SERVICES
+            </p>
+
+            <h1>
+                Assignments 📚
+            </h1>
+
+            <p class="dashboard-subtitle">
+                Create assignments and track academic deadlines.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <main class="dashboard-container">
+
+
+        <!-- CREATE ASSIGNMENT -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        ACADEMIC MANAGEMENT
+                    </p>
+
+                    <h2>
+                        Create Assignment
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <form id="facultyAssignmentForm">
+
+                <div class="assignment-form-grid">
+
+                    <div>
+
+                        <label for="assignmentTitle">
+                            Assignment Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="assignmentTitle"
+                            placeholder="Example: Array and String Problems"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="assignmentSubject">
+                            Subject
+                        </label>
+
+                        <select
+                            id="assignmentSubject"
+                            required
+                        >
+
+                            <option value="">
+                                Select Subject
+                            </option>
+
+                            <option value="Data Structures">
+                                Data Structures
+                            </option>
+
+                            <option value="OOPS">
+                                Object Oriented Programming
+                            </option>
+
+                            <option value="WAD">
+                                Web Application Development
+                            </option>
+
+                            <option value="Economics">
+                                Economics
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="assignmentSection">
+                            Section
+                        </label>
+
+                        <select
+                            id="assignmentSection"
+                            required
+                        >
+
+                            <option value="">
+                                Select Section
+                            </option>
+
+                            <option value="A">
+                                Section A
+                            </option>
+
+                            <option value="B">
+                                Section B
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="assignmentDueDate">
+                            Due Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="assignmentDueDate"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <label for="assignmentDescription">
+                    Description
+                </label>
+
+                <textarea
+                    id="assignmentDescription"
+                    rows="5"
+                    placeholder="Enter assignment instructions..."
+                    required
+                ></textarea>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+                    Create Assignment
+                </button>
+
+            </form>
+
+            <div
+                id="assignmentMessage"
+                class="assignment-message"
+            ></div>
+
+        </section>
+
+
+        <!-- ASSIGNMENT SUMMARY -->
+
+        <section class="dashboard-section">
+
+            <div class="attendance-summary">
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="assignmentTotal">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Active
+                    </span>
+
+                    <strong id="assignmentActive">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Due Soon
+                    </span>
+
+                    <strong id="assignmentDueSoon">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Overdue
+                    </span>
+
+                    <strong id="assignmentOverdue">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ASSIGNMENT LIST -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        ASSIGNMENTS
+                    </p>
+
+                    <h2>
+                        Created Assignments
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="faculty-assignment-list"
+                id="facultyAssignmentList"
+            ></div>
+
+        </section>
+
+
+    </main>
+
+
+    <footer class="footer">
+
+        <p>
+            © 2026 CampusEase.
+            One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Digital Queue | CampusEase</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <!-- ===============================
+         NAVBAR
+    ================================ -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+        <nav>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="queue.html" class="active">
+                Digital Queue
+            </a>
+
+            <a href="#">
+                Notices
+            </a>
+
+            <a href="#" id="logoutBtn">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ===============================
+         QUEUE PAGE
+    ================================ -->
+
+    <main class="queue-page">
+
+
+        <!-- ===============================
+             PAGE HEADER
+        ================================ -->
+
+        <section class="queue-header">
+
+            <p class="small-title">
+                DIGITAL CAMPUS SERVICE
+            </p>
+
+            <h1>
+                Digital Queue
+            </h1>
+
+            <p>
+                Get a digital token and avoid waiting
+                in unnecessary physical queues.
+            </p>
+
+        </section>
+
+
+        <!-- ===============================
+             JOIN QUEUE
+        ================================ -->
+
+        <section class="queue-card">
+
+            <h2>
+                Join a Queue
+            </h2>
+
+            <p class="queue-description">
+                Select the campus service you want to access.
+            </p>
+
+
+            <form id="queueForm">
+
+                <div class="form-group">
+
+                    <label for="service">
+                        Select Service
+                    </label>
+
+                    <select
+                        id="service"
+                        name="service"
+                        required
+                    >
+
+                        <option value="">
+                            Choose a service
+                        </option>
+
+                        <option value="Student Section">
+                            Student Section
+                        </option>
+
+                        <option value="Accounts Office">
+                            Accounts Office
+                        </option>
+
+                        <option value="Examination Cell">
+                            Examination Cell
+                        </option>
+
+                        <option value="Administration Office">
+                            Administration Office
+                        </option>
+
+                        <option value="Library">
+                            Library
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="auth-button"
+                    id="getTokenBtn"
+                >
+
+                    Get Digital Token
+
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ===============================
+             TOKEN RESULT
+        ================================ -->
+
+        <section
+            class="queue-card token-card"
+            id="tokenCard"
+            style="display: none;"
+        >
+
+            <p class="small-title">
+                YOUR DIGITAL TOKEN
+            </p>
+
+
+            <div
+                class="token-number"
+                id="tokenNumber"
+            >
+                --
+            </div>
+
+
+            <h2 id="tokenService">
+                Service
+            </h2>
+
+
+            <p>
+                Queue Position:
+                <strong id="queuePosition">
+                    --
+                </strong>
+            </p>
+
+
+            <span
+                class="status pending"
+                id="queueStatus"
+            >
+                Waiting
+            </span>
+
+        </section>
+
+
+        <!-- ===============================
+             QUEUE INFORMATION
+        ================================ -->
+
+        <section class="queue-info-grid">
+
+
+            <!-- DIGITAL TOKEN -->
+
+            <div class="queue-info-card">
+
+                <div class="overview-icon">
+                    🎫
+                </div>
+
+                <h3>
+                    Digital Token
+                </h3>
+
+                <p id="queueInfoToken">
+                    No token yet.
+                </p>
+
+            </div>
+
+
+            <!-- KNOW YOUR POSITION -->
+
+            <div class="queue-info-card">
+
+                <div class="overview-icon">
+                    📍
+                </div>
+
+                <h3>
+                    Know Your Position
+                </h3>
+
+                <p id="queueInfoPosition">
+                    Join a queue to see your position.
+                </p>
+
+            </div>
+
+
+            <!-- GET NOTIFIED -->
+
+            <div class="queue-info-card">
+
+                <div class="overview-icon">
+                    🔔
+                </div>
+
+                <h3>
+                    Get Notified
+                </h3>
+
+                <p id="queueInfoNotification">
+                    You will be notified when your turn is near.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ===============================
+         FOOTER
+    ================================ -->
+
+    <footer>
+
+        <p>
+            © 2026 CampusEase.
+            One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+    <!-- ===============================
+         QUEUE JAVASCRIPT
+    ================================ -->
+
+    <script>
+
+        const queueForm =
+            document.getElementById("queueForm");
+
+
+        queueForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                // ==========================
+                // CHECK LOGIN
+                // ==========================
+
+                const userData =
+                    localStorage.getItem(
+                        "campusEaseUser"
+                    );
+
+
+                if (!userData) {
+
+                    alert(
+                        "Please login first."
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+                }
+
+
+                const user =
+                    JSON.parse(userData);
+
+
+                // ==========================
+                // GET SERVICE
+                // ==========================
+
+                const service =
+                    document.getElementById(
+                        "service"
+                    ).value;
+
+
+                if (!service) {
+
+                    alert(
+                        "Please select a service."
+                    );
+
+                    return;
+                }
+
+
+                // ==========================
+                // BUTTON
+                // ==========================
+
+                const button =
+                    document.getElementById(
+                        "getTokenBtn"
+                    );
+
+
+                button.textContent =
+                    "Joining Queue...";
+
+                button.disabled =
+                    true;
+
+
+                try {
+
+                    // ==========================
+                    // SEND REQUEST
+                    // ==========================
+
+                    const response =
+                        await fetch(
+                            "http://localhost:5000/api/queue/join",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body: JSON.stringify({
+
+                                    userId:
+                                        user.id,
+
+                                    service:
+                                        service
+
+                                })
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    console.log(
+                        "Queue Response:",
+                        data
+                    );
+
+
+                    // ==========================
+                    // CHECK RESPONSE
+                    // ==========================
+
+                    if (!response.ok) {
+
+                        alert(
+                            data.message ||
+                            "Unable to join queue."
+                        );
+
+                        button.textContent =
+                            "Get Digital Token";
+
+                        button.disabled =
+                            false;
+
+                        return;
+                    }
+
+
+                    // ==========================
+                    // GET TOKEN DATA
+                    // ==========================
+
+                    const tokenNumber =
+                        data.tokenNumber ||
+                        data.token_number ||
+                        "--";
+
+
+                    const queuePosition =
+                        data.queuePosition ||
+                        data.queue_position ||
+                        1;
+
+
+                    const status =
+                        data.status ||
+                        "Waiting";
+
+
+                    // ==========================
+                    // TOKEN RESULT CARD
+                    // ==========================
+
+                    const tokenCard =
+                        document.getElementById(
+                            "tokenCard"
+                        );
+
+
+                    const tokenNumberElement =
+                        document.getElementById(
+                            "tokenNumber"
+                        );
+
+
+                    const tokenService =
+                        document.getElementById(
+                            "tokenService"
+                        );
+
+
+                    const queuePositionElement =
+                        document.getElementById(
+                            "queuePosition"
+                        );
+
+
+                    const queueStatus =
+                        document.getElementById(
+                            "queueStatus"
+                        );
+
+
+                    tokenCard.style.display =
+                        "block";
+
+
+                    tokenNumberElement.textContent =
+                        "Token #" + tokenNumber;
+
+
+                    tokenService.textContent =
+                        service;
+
+
+                    queuePositionElement.textContent =
+                        queuePosition;
+
+
+                    queueStatus.textContent =
+                        status;
+
+
+                    queueStatus.className =
+                        "status " +
+                        status.toLowerCase();
+
+
+                    // ==========================
+                    // UPDATE INFORMATION CARDS
+                    // ==========================
+
+                    const queueInfoToken =
+                        document.getElementById(
+                            "queueInfoToken"
+                        );
+
+
+                    const queueInfoPosition =
+                        document.getElementById(
+                            "queueInfoPosition"
+                        );
+
+
+                    const queueInfoNotification =
+                        document.getElementById(
+                            "queueInfoNotification"
+                        );
+
+
+                    queueInfoToken.innerHTML =
+                        `<strong>
+                            Token #${tokenNumber}
+                        </strong>
+                        <br>
+                        ${service}`;
+
+
+                    queueInfoPosition.innerHTML =
+                        `<strong>
+                            Position #${queuePosition}
+                        </strong>
+                        <br>
+                        You are currently in the queue.`;
+
+
+                    queueInfoNotification.innerHTML =
+                        `🔔 You will be notified when
+                        your turn is near.`;
+
+
+                    // ==========================
+                    // BUTTON UPDATE
+                    // ==========================
+
+                    button.textContent =
+                        "Token Generated ✓";
+
+
+                    button.disabled =
+                        false;
+
+
+                    // ==========================
+                    // SCROLL TO TOKEN
+                    // ==========================
+
+                    tokenCard.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                }
+
+
+                catch (error) {
+
+                    console.error(
+                        "Queue Error:",
+                        error
+                    );
+
+
+                    alert(
+                        "Cannot connect to CampusEase server. Make sure the backend server is running."
+                    );
+
+
+                    button.textContent =
+                        "Get Digital Token";
+
+
+                    button.disabled =
+                        false;
+
+                }
+
+            }
+        );
+
+
+        // ===============================
+        // LOGOUT
+        // ===============================
+
+        const logoutBtn =
+            document.getElementById(
+                "logoutBtn"
+            );
+
+
+        if (logoutBtn) {
+
+            logoutBtn.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+
+                    localStorage.removeItem(
+                        "campusEaseUser"
+                    );
+
+
+                    window.location.href =
+                        "login.html";
+
+                }
+            );
+
+        }
+
+
+        // ===============================
+        // LOAD EXISTING QUEUE TOKEN
+        // ===============================
+
+        async function loadExistingQueueToken() {
+
+            const userData =
+                localStorage.getItem(
+                    "campusEaseUser"
+                );
+
+
+            if (!userData) {
+                return;
+            }
+
+
+            const user =
+                JSON.parse(userData);
+
+
+            if (!user.id) {
+                return;
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `http://localhost:5000/api/queue/user/${user.id}`
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !data.token
+                ) {
+
+                    return;
+
+                }
+
+
+                const token =
+                    data.token;
+
+
+                // ==========================
+                // TOKEN CARD
+                // ==========================
+
+                document.getElementById(
+                    "tokenCard"
+                ).style.display = "block";
+
+
+                document.getElementById(
+                    "tokenNumber"
+                ).textContent =
+                    "Token #" +
+                    token.token_number;
+
+
+                document.getElementById(
+                    "tokenService"
+                ).textContent =
+                    token.service;
+
+
+                document.getElementById(
+                    "queuePosition"
+                ).textContent =
+                    token.queue_position || "1";
+
+
+                document.getElementById(
+                    "queueStatus"
+                ).textContent =
+                    token.status;
+
+
+                // ==========================
+                // INFORMATION CARDS
+                // ==========================
+
+                document.getElementById(
+                    "queueInfoToken"
+                ).innerHTML =
+                    `<strong>
+                        Token #${token.token_number}
+                    </strong>
+                    <br>
+                    ${token.service}`;
+
+
+                document.getElementById(
+                    "queueInfoPosition"
+                ).innerHTML =
+                    `<strong>
+                        Position #${token.queue_position || 1}
+                    </strong>
+                    <br>
+                    You are currently in the queue.`;
+
+
+                document.getElementById(
+                    "queueInfoNotification"
+                ).innerHTML =
+                    `🔔 You will be notified when
+                    your turn is near.`;
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Failed to load existing queue token:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        // Load token when queue page opens
+
+        loadExistingQueueToken();
+
+    </script>
+
+</body>
+
+</html>

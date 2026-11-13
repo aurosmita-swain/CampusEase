@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Students | Faculty | CampusEase</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="faculty-dashboard">
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+        <div class="nav-links">
+
+            <a href="faculty-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="faculty-attendance.html">
+                Attendance
+            </a>
+
+            <a href="faculty-students.html">
+                Students
+            </a>
+
+            <a href="#">
+                Notices
+            </a>
+
+            <a href="login.html">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HEADER -->
+
+    <section class="dashboard-hero">
+
+        <div>
+
+            <p class="small-title">
+                FACULTY SERVICES
+            </p>
+
+            <h1>
+                My Students 👨‍🎓
+            </h1>
+
+            <p class="dashboard-subtitle">
+                View and manage students assigned to your classes.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN -->
+
+    <main class="dashboard-container">
+
+        <!-- FILTER -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        STUDENT DIRECTORY
+                    </p>
+
+                    <h2>
+                        Student List
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="student-filter-bar">
+
+                <input
+                    type="text"
+                    id="studentSearch"
+                    placeholder="Search by name or registration number..."
+                >
+
+
+                <select id="studentSectionFilter">
+
+                    <option value="all">
+                        All Sections
+                    </option>
+
+                    <option value="A">
+                        Section A
+                    </option>
+
+                    <option value="B">
+                        Section B
+                    </option>
+
+                </select>
+
+            </div>
+
+        </section>
+
+
+        <!-- SUMMARY -->
+
+        <section class="dashboard-section">
+
+            <div class="attendance-summary">
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Total Students
+                    </span>
+
+                    <strong id="studentsTotal">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Section A
+                    </span>
+
+                    <strong id="studentsSectionA">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Section B
+                    </span>
+
+                    <strong id="studentsSectionB">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="attendance-stat">
+
+                    <span>
+                        Average Attendance
+                    </span>
+
+                    <strong id="studentsAverageAttendance">
+                        0%
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- STUDENTS -->
+
+        <section class="dashboard-section">
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        STUDENTS
+                    </p>
+
+                    <h2>
+                        Enrolled Students
+                    </h2>
+
+                </div>
+
+                <span
+                    class="status processing"
+                    id="studentListStatus"
+                >
+                    0 Students
+                </span>
+
+            </div>
+
+
+            <div
+                class="faculty-students-grid"
+                id="facultyStudentsList"
+            >
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 CampusEase.
+            One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

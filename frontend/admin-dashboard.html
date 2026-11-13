@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Dashboard | CampusEase</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ===============================
+         NAVBAR
+    ================================ -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+
+        <nav>
+
+            <a
+                href="admin-dashboard.html"
+                class="active"
+            >
+                Dashboard
+            </a>
+
+
+            <a href="admin-documents.html">
+                Requests
+            </a>
+
+
+            <a href="admin-problems.html">
+                Complaints
+            </a>
+
+
+            <a
+                href="#"
+                id="adminLogoutBtn"
+            >
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ===============================
+         MAIN DASHBOARD
+    ================================ -->
+
+    <main class="admin-dashboard">
+
+
+        <!-- ===============================
+             HEADER
+        ================================ -->
+
+        <section class="welcome-section">
+
+            <div>
+
+                <p class="small-title">
+                    ADMIN PANEL
+                </p>
+
+
+                <h1>
+                    Campus Overview 🏫
+                </h1>
+
+
+                <p class="student-details">
+                    Manage campus services, requests and student problems.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ===============================
+             OVERVIEW CARDS
+        ================================ -->
+
+        <section class="overview-grid">
+
+
+            <!-- TOTAL STUDENTS -->
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    👥
+                </div>
+
+
+                <div>
+
+                    <p>
+                        Total Students
+                    </p>
+
+
+                    <h2 id="totalStudents">
+                        -
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PENDING REQUESTS -->
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    📋
+                </div>
+
+
+                <div>
+
+                    <p>
+                        Pending Requests
+                    </p>
+
+
+                    <h2 id="pendingRequests">
+                        -
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ACTIVE PROBLEMS -->
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    🛠️
+                </div>
+
+
+                <div>
+
+                    <p>
+                        Active Problems
+                    </p>
+
+
+                    <h2 id="activeProblems">
+                        -
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- QUEUE TOKENS -->
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    🎫
+                </div>
+
+
+                <div>
+
+                    <p>
+                        Queue Tokens
+                    </p>
+
+
+                    <h2 id="queueTokens">
+                        -
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ===============================
+             DOCUMENT REQUESTS
+        ================================ -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        SERVICE MANAGEMENT
+                    </p>
+
+
+                    <h2>
+                        Document Requests
+                    </h2>
+
+                </div>
+
+
+                <a
+                    href="admin-documents.html"
+                    class="view-link"
+                >
+                    View All →
+                </a>
+
+            </div>
+
+
+
+            <div
+                class="request-grid"
+                id="adminDocumentRequests"
+            >
+
+                <div class="request-card">
+
+                    <div>
+
+                        <h3>
+                            Loading requests...
+                        </h3>
+
+
+                        <p>
+                            Please wait.
+                        </p>
+
+                    </div>
+
+
+                    <span class="status pending">
+                        Loading
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ===============================
+             PROBLEM REPORTS
+        ================================ -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        CAMPUS PROBLEMS
+                    </p>
+
+
+                    <h2>
+                        Problem Reports
+                    </h2>
+
+                </div>
+
+
+                <a
+                    href="admin-problems.html"
+                    class="view-link"
+                >
+                    View All →
+                </a>
+
+            </div>
+
+
+
+            <div
+                class="request-grid"
+                id="adminDashboardProblems"
+            >
+
+                <div class="request-card">
+
+                    <div>
+
+                        <h3>
+                            Loading problem reports...
+                        </h3>
+
+
+                        <p>
+                            Please wait.
+                        </p>
+
+                    </div>
+
+
+                    <span class="status pending">
+                        Loading
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ===============================
+             ADMIN QUICK ACTIONS
+        ================================ -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <p class="small-title">
+                        ADMIN TOOLS
+                    </p>
+
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="quick-actions">
+
+
+                <!-- QUEUE MANAGEMENT -->
+
+                <a
+                    href="admin-queue.html"
+                    class="quick-action"
+                >
+
+                    <span>
+                        🎫
+                    </span>
+
+
+                    <div>
+
+                        <strong>
+                            Queue Management
+                        </strong>
+
+
+                        <small>
+                            Manage student tokens
+                        </small>
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- PROBLEM REPORTS -->
+
+                <a
+                    href="admin-problems.html"
+                    class="quick-action"
+                >
+
+                    <span>
+                        🛠️
+                    </span>
+
+
+                    <div>
+
+                        <strong>
+                            Problem Reports
+                        </strong>
+
+
+                        <small>
+                            Review and manage campus problems
+                        </small>
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- DOCUMENT REQUESTS -->
+
+                <a
+                    href="admin-documents.html"
+                    class="quick-action"
+                >
+
+                    <span>
+                        📄
+                    </span>
+
+
+                    <div>
+
+                        <strong>
+                            Document Requests
+                        </strong>
+
+
+                        <small>
+                            Process student documents
+                        </small>
+
+                    </div>
+
+                </a>
+                <!-- LEAVE REQUESTS -->
+
+<a
+    href="admin-leave.html"
+    class="quick-action"
+>
+
+    <span>
+        📝
+    </span>
+
+    <div>
+
+        <strong>
+            Leave Requests
+        </strong>
+
+        <small>
+            Review and approve student leave applications
+        </small>
+
+    </div>
+
+</a>
+
+
+
+                <!-- CAMPUS ANALYTICS -->
+
+                <a
+                    href="admin-analytics.html"
+                    class="quick-action"
+                >
+
+                    <span>
+                        📊
+                    </span>
+
+
+                    <div>
+
+                        <strong>
+                            Campus Analytics
+                        </strong>
+
+
+                        <small>
+                            View campus statistics
+                        </small>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ===============================
+         FOOTER
+    ================================ -->
+
+    <footer>
+
+        <p>
+            © 2026 CampusEase. One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+
+    <!-- ===============================
+         JAVASCRIPT
+    ================================ -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>

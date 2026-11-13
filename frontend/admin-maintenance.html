@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Maintenance Dashboard | CampusEase</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================================
+           MAINTENANCE DASHBOARD
+        ========================================= */
+
+        .maintenance-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .maintenance-filter {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .maintenance-filter select {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid #263653;
+            background: #111b30;
+            color: white;
+            outline: none;
+        }
+
+        .maintenance-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .maintenance-card {
+            background: #111b30;
+            border: 1px solid #263653;
+            border-radius: 16px;
+            padding: 20px;
+            transition: 0.2s;
+        }
+
+        .maintenance-card:hover {
+            border-color: #34d3eb;
+            transform: translateY(-2px);
+        }
+
+        .maintenance-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .maintenance-title {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .maintenance-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: #16233d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .maintenance-title h3 {
+            margin: 0 0 5px;
+        }
+
+        .maintenance-title p {
+            margin: 0;
+            color: #9ca9bd;
+            font-size: 14px;
+        }
+
+        .maintenance-details {
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .maintenance-detail {
+            background: #0b1325;
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        .maintenance-detail span {
+            display: block;
+            color: #7f8ca3;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .maintenance-detail strong {
+            color: #e8eef7;
+            font-size: 14px;
+        }
+
+        .maintenance-description {
+            margin-top: 15px;
+            padding: 14px;
+            background: #0b1325;
+            border-radius: 10px;
+            color: #c7d0df;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .maintenance-controls {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid #263653;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 12px;
+            align-items: end;
+        }
+
+        .maintenance-control label {
+            display: block;
+            font-size: 12px;
+            color: #8d9ab0;
+            margin-bottom: 6px;
+        }
+
+        .maintenance-control select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 9px;
+            border: 1px solid #263653;
+            background: #0b1325;
+            color: white;
+            outline: none;
+        }
+
+        .maintenance-update-btn {
+            border: none;
+            cursor: pointer;
+            padding: 10px 16px;
+            border-radius: 9px;
+            background: #34d3eb;
+            color: #06101c;
+            font-weight: 700;
+        }
+
+        .maintenance-update-btn:hover {
+            opacity: 0.9;
+        }
+
+        .maintenance-message {
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .maintenance-empty {
+            text-align: center;
+            padding: 50px 20px;
+            background: #111b30;
+            border: 1px solid #263653;
+            border-radius: 16px;
+        }
+
+        .maintenance-empty-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .maintenance-empty h3 {
+            margin-bottom: 8px;
+        }
+
+        .maintenance-empty p {
+            color: #8d9ab0;
+        }
+
+        @media (max-width: 700px) {
+
+            .maintenance-details {
+                grid-template-columns: 1fr;
+            }
+
+            .maintenance-controls {
+                grid-template-columns: 1fr;
+            }
+
+            .maintenance-card-top {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            CampusEase
+        </div>
+
+        <nav>
+
+            <a href="admin-dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="admin-queue.html">
+                Queue
+            </a>
+
+            <a href="admin-maintenance.html" class="active">
+                Maintenance
+            </a>
+
+            <a href="admin-leave.html">
+                Leave
+            </a>
+
+            <a href="admin-documents.html">
+                Requests
+            </a>
+
+            <a href="#" id="maintenanceLogout">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================================
+         MAIN
+    ========================================= -->
+
+    <main class="admin-dashboard">
+
+        <!-- PAGE HEADER -->
+
+        <section class="welcome-section">
+
+            <div>
+
+                <p class="small-title">
+                    CAMPUS OPERATIONS
+                </p>
+
+                <h1>
+                    Maintenance Dashboard 🔧
+                </h1>
+
+                <p class="student-details">
+                    Monitor, assign and resolve campus maintenance issues.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             STATISTICS
+        ========================================= -->
+
+        <section class="overview-grid">
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    🔧
+                </div>
+
+                <div>
+
+                    <p>Total Issues</p>
+
+                    <h2 id="totalMaintenance">
+                        -
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    ⏳
+                </div>
+
+                <div>
+
+                    <p>Pending</p>
+
+                    <h2 id="pendingMaintenance">
+                        -
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    🚧
+                </div>
+
+                <div>
+
+                    <p>In Progress</p>
+
+                    <h2 id="progressMaintenance">
+                        -
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-icon">
+                    ✅
+                </div>
+
+                <div>
+
+                    <p>Resolved</p>
+
+                    <h2 id="resolvedMaintenance">
+                        -
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             MAINTENANCE LIST
+        ========================================= -->
+
+        <section class="dashboard-section">
+
+            <div class="maintenance-toolbar">
+
+                <div>
+
+                    <p class="small-title">
+                        MAINTENANCE REQUESTS
+                    </p>
+
+                    <h2>
+                        Campus Issues
+                    </h2>
+
+                </div>
+
+
+                <div class="maintenance-filter">
+
+                    <select id="statusFilter">
+
+                        <option value="All">
+                            All Status
+                        </option>
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                        <option value="In Progress">
+                            In Progress
+                        </option>
+
+                        <option value="Resolved">
+                            Resolved
+                        </option>
+
+                    </select>
+
+
+                    <select id="categoryFilter">
+
+                        <option value="All">
+                            All Categories
+                        </option>
+
+                        <option value="Electrical">
+                            Electrical
+                        </option>
+
+                        <option value="Plumbing">
+                            Plumbing
+                        </option>
+
+                        <option value="Cleaning">
+                            Cleaning
+                        </option>
+
+                        <option value="Furniture">
+                            Furniture
+                        </option>
+
+                        <option value="Wi-Fi">
+                            Wi-Fi / Network
+                        </option>
+
+                        <option value="Hostel">
+                            Hostel
+                        </option>
+
+                        <option value="Civil">
+                            Civil / Infrastructure
+                        </option>
+
+                        <option value="General">
+                            General
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="maintenance-list"
+                id="maintenanceList"
+            >
+
+                <div class="maintenance-empty">
+
+                    <div class="maintenance-empty-icon">
+                        ⏳
+                    </div>
+
+                    <h3>
+                        Loading maintenance requests...
+                    </h3>
+
+                    <p>
+                        Please wait.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+    <footer>
+
+        <p>
+            © 2026 CampusEase. One Campus. One Platform.
+        </p>
+
+    </footer>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+        // =========================================
+        // CHECK LOGIN
+        // =========================================
+
+        const userData =
+            localStorage.getItem("campusEaseUser");
+
+
+        if (!userData) {
+
+            window.location.href = "login.html";
+
+        }
+
+
+        // =========================================
+        // STORE ALL REPORTS
+        // =========================================
+
+        let allMaintenanceReports = [];
+
+
+        // =========================================
+        // LOAD MAINTENANCE REQUESTS
+        // =========================================
+
+        async function loadMaintenance() {
+
+            const container =
+                document.getElementById(
+                    "maintenanceList"
+                );
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "http://localhost:5000/api/admin/problems"
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Failed to load maintenance requests."
+                    );
+
+                }
+
+
+                /*
+                    Your existing backend returns
+                    problem reports.
+
+                    We display them here as
+                    maintenance issues.
+                */
+
+                allMaintenanceReports =
+                    Array.isArray(data)
+                        ? data
+                        : [];
+
+
+                updateStats(
+                    allMaintenanceReports
+                );
+
+
+                renderMaintenance();
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Maintenance loading error:",
+                    error
+                );
+
+
+                container.innerHTML = `
+
+                    <div class="maintenance-empty">
+
+                        <div class="maintenance-empty-icon">
+                            ⚠️
+                        </div>
+
+                        <h3>
+                            Unable to Load Maintenance Requests
+                        </h3>
+
+                        <p>
+                            Make sure the CampusEase server is running.
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        // =========================================
+        // RENDER
+        // =========================================
+
+        function renderMaintenance() {
+
+            const container =
+                document.getElementById(
+                    "maintenanceList"
+                );
+
+
+            const status =
+                document.getElementById(
+                    "statusFilter"
+                ).value;
+
+
+            const category =
+                document.getElementById(
+                    "categoryFilter"
+                ).value;
+
+
+            let reports =
+                [...allMaintenanceReports];
+
+
+            // STATUS FILTER
+
+            if (status !== "All") {
+
+                reports =
+                    reports.filter(
+                        report =>
+                            report.status === status
+                    );
+
+            }
+
+
+            // CATEGORY FILTER
+
+            if (category !== "All") {
+
+                reports =
+                    reports.filter(
+                        report =>
+                            normalizeCategory(
+                                report.category
+                            ) === category
+                    );
+
+            }
+
+
+            // NO REPORTS
+
+            if (reports.length === 0) {
+
+                container.innerHTML = `
+
+                    <div class="maintenance-empty">
+
+                        <div class="maintenance-empty-icon">
+                            ✅
+                        </div>
+
+                        <h3>
+                            No Maintenance Requests
+                        </h3>
+
+                        <p>
+                            There are no requests matching the selected filters.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            container.innerHTML = "";
+
+
+            reports.forEach(
+                report => {
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "maintenance-card";
+
+
+                    card.innerHTML = `
+
+                        <div class="maintenance-card-top">
+
+                            <div class="maintenance-title">
+
+                                <div class="maintenance-icon">
+                                    ${getCategoryIcon(report.category)}
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        ${escapeHTML(
+                                            report.title ||
+                                            "Maintenance Issue"
+                                        )}
+                                    </h3>
+
+                                    <p>
+                                        Report #${report.id}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <span class="status ${getStatusClass(report.status)}">
+
+                                ${escapeHTML(
+                                    report.status ||
+                                    "Pending"
+                                )}
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="maintenance-details">
+
+                            <div class="maintenance-detail">
+
+                                <span>
+                                    Student
+                                </span>
+
+                                <strong>
+                                    ${escapeHTML(
+                                        report.student_name ||
+                                        "Unknown"
+                                    )}
+                                </strong>
+
+                            </div>
+
+
+                            <div class="maintenance-detail">
+
+                                <span>
+                                    Student ID
+                                </span>
+
+                                <strong>
+                                    ${escapeHTML(
+                                        report.user_id_number ||
+                                        "N/A"
+                                    )}
+                                </strong>
+
+                            </div>
+
+
+                            <div class="maintenance-detail">
+
+                                <span>
+                                    Category
+                                </span>
+
+                                <strong>
+                                    ${escapeHTML(
+                                        report.category ||
+                                        "General"
+                                    )}
+                                </strong>
+
+                            </div>
+
+
+                            <div class="maintenance-detail">
+
+                                <span>
+                                    Location
+                                </span>
+
+                                <strong>
+                                    ${escapeHTML(
+                                        report.location ||
+                                        "Not specified"
+                                    )}
+                                </strong>
+
+                            </div>
+
+
+                            <div class="maintenance-detail">
+
+                                <span>
+                                    Reported On
+                                </span>
+
+                                <strong>
+                                    ${formatDate(
+                                        report.created_at
+                                    )}
+                                </strong>
+
+                            </div>
+
+
+                            <div class="maintenance-detail">
+
+                                <span>
+                                    Assigned Team
+                                </span>
+
+                                <strong>
+                                    ${escapeHTML(
+                                        report.assigned_to ||
+                                        "Not assigned"
+                                    )}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="maintenance-description">
+
+                            <strong>
+                                Description
+                            </strong>
+
+                            <br><br>
+
+                            ${escapeHTML(
+                                report.description ||
+                                "No description provided."
+                            )}
+
+                        </div>
+
+
+                        <div class="maintenance-controls">
+
+                            <div class="maintenance-control">
+
+                                <label>
+                                    Maintenance Team
+                                </label>
+
+                                <select
+                                    id="team-${report.id}"
+                                >
+
+                                    <option value="">
+                                        Select team
+                                    </option>
+
+                                    <option value="Electrical Maintenance Team"
+                                        ${report.assigned_to === "Electrical Maintenance Team"
+                                            ? "selected"
+                                            : ""}>
+                                        ⚡ Electrical
+                                    </option>
+
+                                    <option value="Plumbing Maintenance Team"
+                                        ${report.assigned_to === "Plumbing Maintenance Team"
+                                            ? "selected"
+                                            : ""}>
+                                        🚰 Plumbing
+                                    </option>
+
+                                    <option value="Civil Maintenance Team"
+                                        ${report.assigned_to === "Civil Maintenance Team"
+                                            ? "selected"
+                                            : ""}>
+                                        🏗️ Civil
+                                    </option>
+
+                                    <option value="IT / Network Team"
+                                        ${report.assigned_to === "IT / Network Team"
+                                            ? "selected"
+                                            : ""}>
+                                        🌐 IT / Network
+                                    </option>
+
+                                    <option value="Housekeeping Team"
+                                        ${report.assigned_to === "Housekeeping Team"
+                                            ? "selected"
+                                            : ""}>
+                                        🧹 Housekeeping
+                                    </option>
+
+                                    <option value="Hostel Maintenance Team"
+                                        ${report.assigned_to === "Hostel Maintenance Team"
+                                            ? "selected"
+                                            : ""}>
+                                        🏠 Hostel
+                                    </option>
+
+                                    <option value="General Maintenance Team"
+                                        ${report.assigned_to === "General Maintenance Team"
+                                            ? "selected"
+                                            : ""}>
+                                        🔧 General
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="maintenance-control">
+
+                                <label>
+                                    Status
+                                </label>
+
+                                <select
+                                    id="status-${report.id}"
+                                >
+
+                                    <option value="Pending"
+                                        ${report.status === "Pending"
+                                            ? "selected"
+                                            : ""}>
+                                        Pending
+                                    </option>
+
+                                    <option value="In Progress"
+                                        ${report.status === "In Progress"
+                                            ? "selected"
+                                            : ""}>
+                                        In Progress
+                                    </option>
+
+                                    <option value="Resolved"
+                                        ${report.status === "Resolved"
+                                            ? "selected"
+                                            : ""}>
+                                        Resolved
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <button
+                                class="maintenance-update-btn"
+                                onclick="updateMaintenance(${report.id})"
+                            >
+                                Update
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="message-${report.id}"
+                            class="maintenance-message"
+                        ></div>
+
+                    `;
+
+
+                    container.appendChild(card);
+
+                }
+            );
+
+        }
+
+
+        // =========================================
+        // UPDATE MAINTENANCE
+        // =========================================
+
+        async function updateMaintenance(id) {
+
+            const team =
+                document.getElementById(
+                    `team-${id}`
+                ).value;
+
+
+            const status =
+                document.getElementById(
+                    `status-${id}`
+                ).value;
+
+
+            const message =
+                document.getElementById(
+                    `message-${id}`
+                );
+
+
+            if (
+                (status === "In Progress" ||
+                 status === "Resolved") &&
+                team === ""
+            ) {
+
+                message.textContent =
+                    "Please select a maintenance team.";
+
+                message.style.color =
+                    "#ff6b6b";
+
+                return;
+
+            }
+
+
+            message.textContent =
+                "Updating...";
+
+            message.style.color =
+                "#34d3eb";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `http://localhost:5000/api/admin/problems/${id}/status`,
+                        {
+                            method: "PUT",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                status: status,
+
+                                assignedTo:
+                                    team || null
+
+                            })
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Failed to update."
+                    );
+
+                }
+
+
+                message.textContent =
+                    "Updated successfully ✓";
+
+                message.style.color =
+                    "#4ade80";
+
+
+                setTimeout(
+                    loadMaintenance,
+                    500
+                );
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "Maintenance update error:",
+                    error
+                );
+
+
+                message.textContent =
+                    error.message ||
+                    "Update failed.";
+
+                message.style.color =
+                    "#ff6b6b";
+
+            }
+
+        }
+
+
+        // =========================================
+        // STATISTICS
+        // =========================================
+
+        function updateStats(reports) {
+
+            document.getElementById(
+                "totalMaintenance"
+            ).textContent =
+                reports.length;
+
+
+            document.getElementById(
+                "pendingMaintenance"
+            ).textContent =
+                reports.filter(
+                    r => r.status === "Pending"
+                ).length;
+
+
+            document.getElementById(
+                "progressMaintenance"
+            ).textContent =
+                reports.filter(
+                    r => r.status === "In Progress"
+                ).length;
+
+
+            document.getElementById(
+                "resolvedMaintenance"
+            ).textContent =
+                reports.filter(
+                    r => r.status === "Resolved"
+                ).length;
+
+        }
+
+
+        // =========================================
+        // CATEGORY NORMALIZATION
+        // =========================================
+
+        function normalizeCategory(category) {
+
+            if (!category) {
+                return "General";
+            }
+
+
+            const value =
+                category.toLowerCase();
+
+
+            if (value.includes("electrical")) {
+                return "Electrical";
+            }
+
+            if (value.includes("plumb")) {
+                return "Plumbing";
+            }
+
+            if (
+                value.includes("clean") ||
+                value.includes("housekeeping")
+            ) {
+                return "Cleaning";
+            }
+
+            if (value.includes("furniture")) {
+                return "Furniture";
+            }
+
+            if (
+                value.includes("wifi") ||
+                value.includes("network") ||
+                value.includes("internet")
+            ) {
+                return "Wi-Fi";
+            }
+
+            if (value.includes("hostel")) {
+                return "Hostel";
+            }
+
+            if (
+                value.includes("civil") ||
+                value.includes("infrastructure")
+            ) {
+                return "Civil";
+            }
+
+            return "General";
+
+        }
+
+
+        // =========================================
+        // CATEGORY ICON
+        // =========================================
+
+        function getCategoryIcon(category) {
+
+            const normalized =
+                normalizeCategory(category);
+
+
+            const icons = {
+
+                Electrical: "⚡",
+
+                Plumbing: "🚰",
+
+                Cleaning: "🧹",
+
+                Furniture: "🪑",
+
+                "Wi-Fi": "🌐",
+
+                Hostel: "🏠",
+
+                Civil: "🏗️",
+
+                General: "🔧"
+
+            };
+
+
+            return icons[normalized] ||
+                "🔧";
+
+        }
+
+
+        // =========================================
+        // STATUS CLASS
+        // =========================================
+
+        function getStatusClass(status) {
+
+            if (!status) {
+                return "pending";
+            }
+
+
+            if (status === "Resolved") {
+                return "approved";
+            }
+
+
+            if (status === "In Progress") {
+                return "processing";
+            }
+
+
+            return "pending";
+
+        }
+
+
+        // =========================================
+        // DATE
+        // =========================================
+
+        function formatDate(date) {
+
+            if (!date) {
+                return "N/A";
+            }
+
+
+            return new Date(date).toLocaleString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+        // =========================================
+        // SECURITY
+        // =========================================
+
+        function escapeHTML(value) {
+
+            if (
+                value === null ||
+                value === undefined
+            ) {
+                return "";
+            }
+
+
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        // =========================================
+        // FILTER EVENTS
+        // =========================================
+
+        document.getElementById(
+            "statusFilter"
+        ).addEventListener(
+            "change",
+            renderMaintenance
+        );
+
+
+        document.getElementById(
+            "categoryFilter"
+        ).addEventListener(
+            "change",
+            renderMaintenance
+        );
+
+
+        // =========================================
+        // LOGOUT
+        // =========================================
+
+        document.getElementById(
+            "maintenanceLogout"
+        ).addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+
+                localStorage.removeItem(
+                    "campusEaseUser"
+                );
+
+
+                window.location.href =
+                    "login.html";
+
+            }
+        );
+
+
+        // =========================================
+        // START
+        // =========================================
+
+        loadMaintenance();
+
+    </script>
+
+</body>
+
+</html>
